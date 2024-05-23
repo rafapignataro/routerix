@@ -1,0 +1,31 @@
+{
+  "name": "node-routes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "bin": "dist/cli.js",
+  "scripts": {
+    "build": "tsup --entry src/index.ts --entry src/cli.ts --format cjs,esm --dts && pnpm run link",
+    "link": "pnpm unlink --global && pnpm link --global",
+    "lint": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.3.2",
+    "@types/react-dom": "^18.3.0",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "commander": "^12.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "^5.2.11"
+  }
+}
