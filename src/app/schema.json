@@ -1,0 +1,1563 @@
+{
+  "id": "d69fdeaf-6d29-47ed-9716-dbf1de14bb94",
+  "createdAt": 1716821514475,
+  "routes": {
+    "id": "1683663f-b93b-4bb3-a2b7-8636e2d4f258",
+    "type": "route",
+    "name": "app",
+    "path": "/",
+    "fullPath": "/src/app",
+    "subType": "default",
+    "children": {
+      "[locale]": {
+        "id": "bb255bf3-80e2-4bc3-9ed9-40fbd56e0963",
+        "type": "route",
+        "name": "[locale]",
+        "path": "/[locale]",
+        "fullPath": "/src/app/[locale]",
+        "subType": "dynamic",
+        "param": "locale",
+        "children": {
+          "(auth)": {
+            "id": "ac4cbca8-78a3-49e8-a487-452bf5b01d97",
+            "type": "route",
+            "name": "(auth)",
+            "path": "/[locale]/(auth)",
+            "fullPath": "/src/app/[locale]/(auth)",
+            "subType": "container",
+            "children": {
+              "forgot-password": {
+                "id": "3dd02a77-e69c-46af-8e51-5f8647e59263",
+                "type": "route",
+                "name": "forgot-password",
+                "path": "/[locale]/(auth)/forgot-password",
+                "fullPath": "/src/app/[locale]/(auth)/forgot-password",
+                "subType": "default",
+                "children": {
+                  "page.tsx": {
+                    "id": "b703a569-c885-4d52-bbe3-ef5ceec92c3c",
+                    "name": "page.tsx",
+                    "type": "element",
+                    "subType": "page"
+                  }
+                }
+              },
+              "layout.tsx": {
+                "id": "f2f34b30-4c6b-4d56-b830-645037160354",
+                "name": "layout.tsx",
+                "type": "element",
+                "subType": "layout"
+              },
+              "login": {
+                "id": "fef99354-435f-4b7d-a11d-0d5cc916e5aa",
+                "type": "route",
+                "name": "login",
+                "path": "/[locale]/(auth)/login",
+                "fullPath": "/src/app/[locale]/(auth)/login",
+                "subType": "default",
+                "children": {
+                  "page.tsx": {
+                    "id": "f7a2be0c-db1d-4e06-bc7d-713483bda6c1",
+                    "name": "page.tsx",
+                    "type": "element",
+                    "subType": "page"
+                  }
+                }
+              },
+              "recover-password": {
+                "id": "04c83f64-41d7-465f-9feb-3c306a725d3c",
+                "type": "route",
+                "name": "recover-password",
+                "path": "/[locale]/(auth)/recover-password",
+                "fullPath": "/src/app/[locale]/(auth)/recover-password",
+                "subType": "default",
+                "children": {
+                  "page.tsx": {
+                    "id": "c7dbcacb-25f3-4942-a3be-2ace547445c7",
+                    "name": "page.tsx",
+                    "type": "element",
+                    "subType": "page"
+                  }
+                }
+              }
+            }
+          },
+          "(shop)": {
+            "id": "aeef11fa-040a-43c0-bf36-e0f8f1d1ce91",
+            "type": "route",
+            "name": "(shop)",
+            "path": "/[locale]/(shop)",
+            "fullPath": "/src/app/[locale]/(shop)",
+            "subType": "container",
+            "children": {
+              "eu": {
+                "id": "7c2bd457-b335-4707-87c0-3991e375a0c3",
+                "type": "route",
+                "name": "eu",
+                "path": "/[locale]/(shop)/eu",
+                "fullPath": "/src/app/[locale]/(shop)/eu",
+                "subType": "default",
+                "children": {
+                  "long-journey": {
+                    "id": "0c25a443-b5a3-458d-9358-bc9c94af7dff",
+                    "type": "route",
+                    "name": "long-journey",
+                    "path": "/[locale]/(shop)/eu/long-journey",
+                    "fullPath": "/src/app/[locale]/(shop)/eu/long-journey",
+                    "subType": "default",
+                    "children": {
+                      "billing": {
+                        "id": "7e5bc8fa-d0c1-44f4-b460-5e19cf0a6a8f",
+                        "type": "route",
+                        "name": "billing",
+                        "path": "/[locale]/(shop)/eu/long-journey/billing",
+                        "fullPath": "/src/app/[locale]/(shop)/eu/long-journey/billing",
+                        "subType": "default",
+                        "children": {
+                          "layout.tsx": {
+                            "id": "9027cdfb-7089-4aa3-a3c3-de86fd4b1a17",
+                            "name": "layout.tsx",
+                            "type": "element",
+                            "subType": "layout"
+                          },
+                          "page.tsx": {
+                            "id": "d5b8e7e4-1c8d-4fd4-a307-e466ce09d1a1",
+                            "name": "page.tsx",
+                            "type": "element",
+                            "subType": "page"
+                          }
+                        }
+                      },
+                      "calculator": {
+                        "id": "81bebe8a-e5ff-47ec-8324-6a52ad79f903",
+                        "type": "route",
+                        "name": "calculator",
+                        "path": "/[locale]/(shop)/eu/long-journey/calculator",
+                        "fullPath": "/src/app/[locale]/(shop)/eu/long-journey/calculator",
+                        "subType": "default",
+                        "children": {
+                          "page.tsx": {
+                            "id": "9e34f09c-1894-4358-a53c-2e05e1016416",
+                            "name": "page.tsx",
+                            "type": "element",
+                            "subType": "page"
+                          }
+                        }
+                      },
+                      "conclusion": {
+                        "id": "2679d453-4def-43ed-b43f-832031d80694",
+                        "type": "route",
+                        "name": "conclusion",
+                        "path": "/[locale]/(shop)/eu/long-journey/conclusion",
+                        "fullPath": "/src/app/[locale]/(shop)/eu/long-journey/conclusion",
+                        "subType": "default",
+                        "children": {
+                          "page.tsx": {
+                            "id": "f8e8d379-8077-4a4a-9886-ae3304e48f86",
+                            "name": "page.tsx",
+                            "type": "element",
+                            "subType": "page"
+                          }
+                        }
+                      },
+                      "create-account": {
+                        "id": "f2186344-581a-40c8-ae43-7650100dd9ff",
+                        "type": "route",
+                        "name": "create-account",
+                        "path": "/[locale]/(shop)/eu/long-journey/create-account",
+                        "fullPath": "/src/app/[locale]/(shop)/eu/long-journey/create-account",
+                        "subType": "default",
+                        "children": {
+                          "page.tsx": {
+                            "id": "a0916f55-2146-43e3-bed4-f8a4325d8e05",
+                            "name": "page.tsx",
+                            "type": "element",
+                            "subType": "page"
+                          }
+                        }
+                      },
+                      "informations": {
+                        "id": "c8083e15-a55f-4ab8-9155-f2dd60efcc5d",
+                        "type": "route",
+                        "name": "informations",
+                        "path": "/[locale]/(shop)/eu/long-journey/informations",
+                        "fullPath": "/src/app/[locale]/(shop)/eu/long-journey/informations",
+                        "subType": "default",
+                        "children": {
+                          "page.tsx": {
+                            "id": "da754971-0bad-4f7d-9206-fb9d9b34f405",
+                            "name": "page.tsx",
+                            "type": "element",
+                            "subType": "page"
+                          }
+                        }
+                      },
+                      "obligations": {
+                        "id": "5c65409d-e345-4c81-8710-2c9597aa9955",
+                        "type": "route",
+                        "name": "obligations",
+                        "path": "/[locale]/(shop)/eu/long-journey/obligations",
+                        "fullPath": "/src/app/[locale]/(shop)/eu/long-journey/obligations",
+                        "subType": "default",
+                        "children": {
+                          "page.tsx": {
+                            "id": "f8862a4a-be1c-4077-ba7c-d35f31d69030",
+                            "name": "page.tsx",
+                            "type": "element",
+                            "subType": "page"
+                          }
+                        }
+                      },
+                      "page.tsx": {
+                        "id": "bc3b8aba-668f-498e-b193-82e864cfcb8d",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      },
+                      "purchase": {
+                        "id": "fef0588f-a654-4878-bad4-5a14ddb60232",
+                        "type": "route",
+                        "name": "purchase",
+                        "path": "/[locale]/(shop)/eu/long-journey/purchase",
+                        "fullPath": "/src/app/[locale]/(shop)/eu/long-journey/purchase",
+                        "subType": "default",
+                        "children": {
+                          "card-third-party.tsx": {
+                            "id": "c1c0c41d-e158-4b79-9772-2be856926d93",
+                            "name": "card-third-party.tsx",
+                            "type": "element",
+                            "subType": "unknown"
+                          },
+                          "cardInfoCountry.tsx": {
+                            "id": "863e4486-3fe3-4b6f-b4c6-677eeea187d1",
+                            "name": "cardInfoCountry.tsx",
+                            "type": "element",
+                            "subType": "unknown"
+                          },
+                          "layout.tsx": {
+                            "id": "d4a83113-4d9a-4529-aa8f-8632eb8897e2",
+                            "name": "layout.tsx",
+                            "type": "element",
+                            "subType": "layout"
+                          },
+                          "page.tsx": {
+                            "id": "4fb88c89-a7fd-473a-af9c-8236ea91a17a",
+                            "name": "page.tsx",
+                            "type": "element",
+                            "subType": "page"
+                          }
+                        }
+                      },
+                      "select-countries": {
+                        "id": "84c65826-3404-4b97-b7ac-e6c84b928631",
+                        "type": "route",
+                        "name": "select-countries",
+                        "path": "/[locale]/(shop)/eu/long-journey/select-countries",
+                        "fullPath": "/src/app/[locale]/(shop)/eu/long-journey/select-countries",
+                        "subType": "default",
+                        "children": {
+                          "page.tsx": {
+                            "id": "2834374d-94e9-49bb-9a80-b3bb169adb2f",
+                            "name": "page.tsx",
+                            "type": "element",
+                            "subType": "page"
+                          }
+                        }
+                      },
+                      "select-services": {
+                        "id": "500713f6-23b6-4a6f-9720-4970b3e46deb",
+                        "type": "route",
+                        "name": "select-services",
+                        "path": "/[locale]/(shop)/eu/long-journey/select-services",
+                        "fullPath": "/src/app/[locale]/(shop)/eu/long-journey/select-services",
+                        "subType": "default",
+                        "children": {
+                          "page.tsx": {
+                            "id": "0a21b982-f123-4d36-abd2-05f5cae84bca",
+                            "name": "page.tsx",
+                            "type": "element",
+                            "subType": "page"
+                          }
+                        }
+                      },
+                      "shopping-cart": {
+                        "id": "45d569a7-ce3b-40bf-8936-679f8a3624ff",
+                        "type": "route",
+                        "name": "shopping-cart",
+                        "path": "/[locale]/(shop)/eu/long-journey/shopping-cart",
+                        "fullPath": "/src/app/[locale]/(shop)/eu/long-journey/shopping-cart",
+                        "subType": "default",
+                        "children": {
+                          "page.tsx": {
+                            "id": "279e03ce-7678-4903-8806-5750d828c9e0",
+                            "name": "page.tsx",
+                            "type": "element",
+                            "subType": "page"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "quick-journey": {
+                    "id": "cfe1164f-960d-49ad-ac6e-f148aa4cb4c5",
+                    "type": "route",
+                    "name": "quick-journey",
+                    "path": "/[locale]/(shop)/eu/quick-journey",
+                    "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey",
+                    "subType": "default",
+                    "children": {
+                      "action-guide": {
+                        "id": "bc03f98c-98ea-4c35-a627-899f506e0ac1",
+                        "type": "route",
+                        "name": "action-guide",
+                        "path": "/[locale]/(shop)/eu/quick-journey/action-guide",
+                        "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/action-guide",
+                        "subType": "default",
+                        "children": {
+                          "conclusion": {
+                            "id": "e3120db3-478c-4fdd-928e-c2fae7b3a8d7",
+                            "type": "route",
+                            "name": "conclusion",
+                            "path": "/[locale]/(shop)/eu/quick-journey/action-guide/conclusion",
+                            "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/action-guide/conclusion",
+                            "subType": "default",
+                            "children": {
+                              "page.tsx": {
+                                "id": "e2ed70e7-cebe-407a-8835-41488af2bfa3",
+                                "name": "page.tsx",
+                                "type": "element",
+                                "subType": "page"
+                              }
+                            }
+                          },
+                          "information": {
+                            "id": "c76b4071-5dd5-40ea-a745-0d79f17a5ca4",
+                            "type": "route",
+                            "name": "information",
+                            "path": "/[locale]/(shop)/eu/quick-journey/action-guide/information",
+                            "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/action-guide/information",
+                            "subType": "default",
+                            "children": {
+                              "page.tsx": {
+                                "id": "be419b67-1bb6-4902-be9b-5cd001815365",
+                                "name": "page.tsx",
+                                "type": "element",
+                                "subType": "page"
+                              }
+                            }
+                          },
+                          "purchase": {
+                            "id": "e9572fac-0875-4e31-b617-02dc1682cc0e",
+                            "type": "route",
+                            "name": "purchase",
+                            "path": "/[locale]/(shop)/eu/quick-journey/action-guide/purchase",
+                            "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/action-guide/purchase",
+                            "subType": "default",
+                            "children": {
+                              "cardInfoCountry.tsx": {
+                                "id": "f0967dc6-f4b3-4860-9312-8239629ebed2",
+                                "name": "cardInfoCountry.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "page.tsx": {
+                                "id": "4d0d893d-0f36-41be-8663-5c4f045d068b",
+                                "name": "page.tsx",
+                                "type": "element",
+                                "subType": "page"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "churn": {
+                        "id": "9bdd0a54-8c62-4bca-9170-c4f8224add31",
+                        "type": "route",
+                        "name": "churn",
+                        "path": "/[locale]/(shop)/eu/quick-journey/churn",
+                        "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/churn",
+                        "subType": "default",
+                        "children": {
+                          "conclusion": {
+                            "id": "24ff8a47-6538-4906-a78f-fc8dd52762a4",
+                            "type": "route",
+                            "name": "conclusion",
+                            "path": "/[locale]/(shop)/eu/quick-journey/churn/conclusion",
+                            "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/churn/conclusion",
+                            "subType": "default",
+                            "children": {
+                              "page.tsx": {
+                                "id": "7477aa17-112a-40a8-826d-5d336fcdb19a",
+                                "name": "page.tsx",
+                                "type": "element",
+                                "subType": "page"
+                              }
+                            }
+                          },
+                          "information": {
+                            "id": "d2bffce1-371b-44af-b419-8522dfef5459",
+                            "type": "route",
+                            "name": "information",
+                            "path": "/[locale]/(shop)/eu/quick-journey/churn/information",
+                            "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/churn/information",
+                            "subType": "default",
+                            "children": {
+                              "[id]": {
+                                "id": "be5561a1-48f4-400e-971c-e0694dce1153",
+                                "type": "route",
+                                "name": "[id]",
+                                "path": "/[locale]/(shop)/eu/quick-journey/churn/information/[id]",
+                                "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/churn/information/[id]",
+                                "subType": "dynamic",
+                                "param": "id",
+                                "children": {
+                                  "page.tsx": {
+                                    "id": "8c93ff76-5a52-4c18-8f89-bdbd1e4e024a",
+                                    "name": "page.tsx",
+                                    "type": "element",
+                                    "subType": "page"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "new-offer": {
+                            "id": "18d9fccf-c207-4bc5-8df3-17e7729d8fbc",
+                            "type": "route",
+                            "name": "new-offer",
+                            "path": "/[locale]/(shop)/eu/quick-journey/churn/new-offer",
+                            "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/churn/new-offer",
+                            "subType": "default",
+                            "children": {
+                              "[id]": {
+                                "id": "98e606c2-f3b2-49e9-b5d3-b5b694f0cc85",
+                                "type": "route",
+                                "name": "[id]",
+                                "path": "/[locale]/(shop)/eu/quick-journey/churn/new-offer/[id]",
+                                "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/churn/new-offer/[id]",
+                                "subType": "dynamic",
+                                "param": "id",
+                                "children": {
+                                  "page.tsx": {
+                                    "id": "a73a4ebb-8aa7-49de-b313-b0f748736bb0",
+                                    "name": "page.tsx",
+                                    "type": "element",
+                                    "subType": "page"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "offer": {
+                            "id": "e3e12bf8-d534-4dd0-b661-4d2f4502c441",
+                            "type": "route",
+                            "name": "offer",
+                            "path": "/[locale]/(shop)/eu/quick-journey/churn/offer",
+                            "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/churn/offer",
+                            "subType": "default",
+                            "children": {
+                              "[id]": {
+                                "id": "78fdb4fd-6289-4424-b08d-f7236fef6aa8",
+                                "type": "route",
+                                "name": "[id]",
+                                "path": "/[locale]/(shop)/eu/quick-journey/churn/offer/[id]",
+                                "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/churn/offer/[id]",
+                                "subType": "dynamic",
+                                "param": "id",
+                                "children": {
+                                  "page.tsx": {
+                                    "id": "00d129c4-b9e7-4b1a-8c0d-948c62f4ec6a",
+                                    "name": "page.tsx",
+                                    "type": "element",
+                                    "subType": "page"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "purchase": {
+                            "id": "2f709504-893d-4dd8-810c-dfa5e960538d",
+                            "type": "route",
+                            "name": "purchase",
+                            "path": "/[locale]/(shop)/eu/quick-journey/churn/purchase",
+                            "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/churn/purchase",
+                            "subType": "default",
+                            "children": {
+                              "cardInfoCountry.tsx": {
+                                "id": "701ffe35-70c6-40c4-81b6-f08262e7fe71",
+                                "name": "cardInfoCountry.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "page.tsx": {
+                                "id": "1bacd176-4531-4402-9484-e891479ff418",
+                                "name": "page.tsx",
+                                "type": "element",
+                                "subType": "page"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "license": {
+                        "id": "02e3ed14-a15f-4ff4-9fb6-28b49b4e7a3c",
+                        "type": "route",
+                        "name": "license",
+                        "path": "/[locale]/(shop)/eu/quick-journey/license",
+                        "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/license",
+                        "subType": "default",
+                        "children": {
+                          "billing": {
+                            "id": "6dfe4a28-ba0b-4b37-af50-69a6c96725d8",
+                            "type": "route",
+                            "name": "billing",
+                            "path": "/[locale]/(shop)/eu/quick-journey/license/billing",
+                            "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/license/billing",
+                            "subType": "default",
+                            "children": {
+                              "action": {
+                                "id": "83c2f7c5-8876-4774-841f-aea2227d8320",
+                                "type": "route",
+                                "name": "action",
+                                "path": "/[locale]/(shop)/eu/quick-journey/license/billing/action",
+                                "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/license/billing/action",
+                                "subType": "default",
+                                "children": {
+                                  "page.tsx": {
+                                    "id": "fc9505bc-ad1b-4d8f-a0d6-1d60a0f85500",
+                                    "name": "page.tsx",
+                                    "type": "element",
+                                    "subType": "page"
+                                  }
+                                }
+                              },
+                              "churn-offer": {
+                                "id": "e679ff8f-d7e4-4b21-a699-adc90faf509b",
+                                "type": "route",
+                                "name": "churn-offer",
+                                "path": "/[locale]/(shop)/eu/quick-journey/license/billing/churn-offer",
+                                "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/license/billing/churn-offer",
+                                "subType": "default",
+                                "children": {
+                                  "page.tsx": {
+                                    "id": "c46e00e3-8698-43ee-8212-50c42045071b",
+                                    "name": "page.tsx",
+                                    "type": "element",
+                                    "subType": "page"
+                                  }
+                                }
+                              },
+                              "layout.tsx": {
+                                "id": "8269c080-7380-49f8-b028-9a76e7b77521",
+                                "name": "layout.tsx",
+                                "type": "element",
+                                "subType": "layout"
+                              },
+                              "license-billing.interface.ts": {
+                                "id": "1e984c1d-6e64-4253-b70a-8959e81c49b6",
+                                "name": "license-billing.interface.ts",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "page.tsx": {
+                                "id": "f9b0b090-3942-4fe4-bb82-e5e85ed9bf39",
+                                "name": "page.tsx",
+                                "type": "element",
+                                "subType": "page"
+                              }
+                            }
+                          },
+                          "calculator": {
+                            "id": "e0df0011-4acf-470a-a162-6c5854aad99d",
+                            "type": "route",
+                            "name": "calculator",
+                            "path": "/[locale]/(shop)/eu/quick-journey/license/calculator",
+                            "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/license/calculator",
+                            "subType": "default",
+                            "children": {
+                              "page.tsx": {
+                                "id": "e82ca79d-6d8f-4e38-8ec0-1a6412f5bbcb",
+                                "name": "page.tsx",
+                                "type": "element",
+                                "subType": "page"
+                              }
+                            }
+                          },
+                          "conclusion": {
+                            "id": "da82fd36-2e67-4046-ad9a-d2a4aa5d8512",
+                            "type": "route",
+                            "name": "conclusion",
+                            "path": "/[locale]/(shop)/eu/quick-journey/license/conclusion",
+                            "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/license/conclusion",
+                            "subType": "default",
+                            "children": {
+                              "page.tsx": {
+                                "id": "6cedc74f-79a3-453d-a2e5-b252899d297f",
+                                "name": "page.tsx",
+                                "type": "element",
+                                "subType": "page"
+                              }
+                            }
+                          },
+                          "create-account": {
+                            "id": "472c3bdb-1614-4cd7-85c9-02bf85b1768a",
+                            "type": "route",
+                            "name": "create-account",
+                            "path": "/[locale]/(shop)/eu/quick-journey/license/create-account",
+                            "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/license/create-account",
+                            "subType": "default",
+                            "children": {
+                              "page.tsx": {
+                                "id": "eb5734e9-a697-42fc-93bd-22c3b96acdc2",
+                                "name": "page.tsx",
+                                "type": "element",
+                                "subType": "page"
+                              }
+                            }
+                          },
+                          "informations": {
+                            "id": "16eb45b6-e9b2-44fc-a497-f9c185134383",
+                            "type": "route",
+                            "name": "informations",
+                            "path": "/[locale]/(shop)/eu/quick-journey/license/informations",
+                            "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/license/informations",
+                            "subType": "default",
+                            "children": {
+                              "page.tsx": {
+                                "id": "e169bb12-f6fc-4dde-abbc-73e73f2e061e",
+                                "name": "page.tsx",
+                                "type": "element",
+                                "subType": "page"
+                              }
+                            }
+                          },
+                          "layout.tsx": {
+                            "id": "d6b8c5b6-2e93-4f82-87f7-94978ee71eda",
+                            "name": "layout.tsx",
+                            "type": "element",
+                            "subType": "layout"
+                          },
+                          "licenseCheckStep.tsx": {
+                            "id": "70dedb65-061f-43c6-81cb-654805ccd165",
+                            "name": "licenseCheckStep.tsx",
+                            "type": "element",
+                            "subType": "unknown"
+                          },
+                          "page.tsx": {
+                            "id": "3e570d1d-a677-4e07-8692-434ed359ff12",
+                            "name": "page.tsx",
+                            "type": "element",
+                            "subType": "page"
+                          },
+                          "purchase": {
+                            "id": "ffdcb445-638f-4060-a232-9ed07f391425",
+                            "type": "route",
+                            "name": "purchase",
+                            "path": "/[locale]/(shop)/eu/quick-journey/license/purchase",
+                            "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/license/purchase",
+                            "subType": "default",
+                            "children": {
+                              "card-third-party.tsx": {
+                                "id": "763545a9-44d4-4c5c-8eea-fd3a823cfe24",
+                                "name": "card-third-party.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "cardInfoCountry.tsx": {
+                                "id": "6c547cea-8680-449f-b6d9-9ae5d2550773",
+                                "name": "cardInfoCountry.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "layout.tsx": {
+                                "id": "82240a71-1a36-41b9-9197-99f8502ad5e4",
+                                "name": "layout.tsx",
+                                "type": "element",
+                                "subType": "layout"
+                              },
+                              "page.tsx": {
+                                "id": "00c0d03b-632e-4053-b5d4-709414d8cce5",
+                                "name": "page.tsx",
+                                "type": "element",
+                                "subType": "page"
+                              }
+                            }
+                          },
+                          "shopping-cart": {
+                            "id": "b9a6b9bf-38e9-409d-b800-01adf621ff48",
+                            "type": "route",
+                            "name": "shopping-cart",
+                            "path": "/[locale]/(shop)/eu/quick-journey/license/shopping-cart",
+                            "fullPath": "/src/app/[locale]/(shop)/eu/quick-journey/license/shopping-cart",
+                            "subType": "default",
+                            "children": {
+                              "page.tsx": {
+                                "id": "7f58aeee-4657-456f-819d-1fef7500beeb",
+                                "name": "page.tsx",
+                                "type": "element",
+                                "subType": "page"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "page.tsx": {
+                        "id": "c3e2c7e3-e30a-4d99-a42e-f7c8fc526433",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      }
+                    }
+                  }
+                }
+              },
+              "layout.tsx": {
+                "id": "bce4625d-b807-4047-842b-cc86db1fe6e4",
+                "name": "layout.tsx",
+                "type": "element",
+                "subType": "layout"
+              }
+            }
+          },
+          "page.tsx": {
+            "id": "f2605a53-ec2d-4ed6-8c3c-2a587282c657",
+            "name": "page.tsx",
+            "type": "element",
+            "subType": "page"
+          },
+          "saas": {
+            "id": "88ab3dd4-8d07-4715-a593-8c2d7ffbcfdb",
+            "type": "route",
+            "name": "saas",
+            "path": "/[locale]/saas",
+            "fullPath": "/src/app/[locale]/saas",
+            "subType": "default",
+            "children": {
+              "(general)": {
+                "id": "1a05147d-7ce9-4ffc-b459-4bee18d8ebd9",
+                "type": "route",
+                "name": "(general)",
+                "path": "/[locale]/saas/(general)",
+                "fullPath": "/src/app/[locale]/saas/(general)",
+                "subType": "container",
+                "children": {
+                  "add-services": {
+                    "id": "1014d431-3bda-470e-a10a-3cf190fb6ea1",
+                    "type": "route",
+                    "name": "add-services",
+                    "path": "/[locale]/saas/(general)/add-services",
+                    "fullPath": "/src/app/[locale]/saas/(general)/add-services",
+                    "subType": "default",
+                    "children": {
+                      "page.tsx": {
+                        "id": "cceba0d7-da07-4712-a97a-24cfba639c25",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      }
+                    }
+                  },
+                  "contract-management": {
+                    "id": "32378fd0-6a2f-4c3b-9f6c-1d9a95ac83c9",
+                    "type": "route",
+                    "name": "contract-management",
+                    "path": "/[locale]/saas/(general)/contract-management",
+                    "fullPath": "/src/app/[locale]/saas/(general)/contract-management",
+                    "subType": "default",
+                    "children": {
+                      "contract-data.tsx": {
+                        "id": "b9ce6a1e-1a92-4d3d-bc29-ce380efca24e",
+                        "name": "contract-data.tsx",
+                        "type": "element",
+                        "subType": "unknown"
+                      },
+                      "contract-documents.tsx": {
+                        "id": "dd05c774-abd7-4e47-80d4-fbcd9aa342fb",
+                        "name": "contract-documents.tsx",
+                        "type": "element",
+                        "subType": "unknown"
+                      },
+                      "layout.tsx": {
+                        "id": "97fac0c7-69e1-49e9-bf53-4a5c0cef94a5",
+                        "name": "layout.tsx",
+                        "type": "element",
+                        "subType": "layout"
+                      },
+                      "page.tsx": {
+                        "id": "fc59fe4d-2cd7-4e1d-8bbe-6413d40ef3d4",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      },
+                      "termination": {
+                        "id": "7a8ad1a2-430f-4a5e-92fb-81ecb9988e07",
+                        "type": "route",
+                        "name": "termination",
+                        "path": "/[locale]/saas/(general)/contract-management/termination",
+                        "fullPath": "/src/app/[locale]/saas/(general)/contract-management/termination",
+                        "subType": "default",
+                        "children": {
+                          "[type]": {
+                            "id": "118d20bb-79b9-4870-825f-882fca12776e",
+                            "type": "route",
+                            "name": "[type]",
+                            "path": "/[locale]/saas/(general)/contract-management/termination/[type]",
+                            "fullPath": "/src/app/[locale]/saas/(general)/contract-management/termination/[type]",
+                            "subType": "dynamic",
+                            "param": "type",
+                            "children": {
+                              "page.tsx": {
+                                "id": "2c9f0fe3-5335-4bd3-81d1-a4a8c5828c0b",
+                                "name": "page.tsx",
+                                "type": "element",
+                                "subType": "page"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "invite-customers": {
+                    "id": "faf5b553-7905-45e1-9324-eed5ae620fa3",
+                    "type": "route",
+                    "name": "invite-customers",
+                    "path": "/[locale]/saas/(general)/invite-customers",
+                    "fullPath": "/src/app/[locale]/saas/(general)/invite-customers",
+                    "subType": "default",
+                    "children": {
+                      "page.tsx": {
+                        "id": "12272ee2-4645-47cb-87dc-dbd82bcf8cf6",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      }
+                    }
+                  },
+                  "invoices-and-payment": {
+                    "id": "a8409b31-edf1-4316-ba1a-85a373e2b8e7",
+                    "type": "route",
+                    "name": "invoices-and-payment",
+                    "path": "/[locale]/saas/(general)/invoices-and-payment",
+                    "fullPath": "/src/app/[locale]/saas/(general)/invoices-and-payment",
+                    "subType": "default",
+                    "children": {
+                      "(components)": {
+                        "id": "d2b9df9b-c10b-4bf4-8ed6-29cf901cb20e",
+                        "type": "route",
+                        "name": "(components)",
+                        "path": "/[locale]/saas/(general)/invoices-and-payment/(components)",
+                        "fullPath": "/src/app/[locale]/saas/(general)/invoices-and-payment/(components)",
+                        "subType": "container",
+                        "children": {
+                          "(creditCardInput)": {
+                            "id": "900e4f16-c7ac-4a1f-a7fd-4869f66ddfac",
+                            "type": "route",
+                            "name": "(creditCardInput)",
+                            "path": "/[locale]/saas/(general)/invoices-and-payment/(components)/(creditCardInput)",
+                            "fullPath": "/src/app/[locale]/saas/(general)/invoices-and-payment/(components)/(creditCardInput)",
+                            "subType": "container",
+                            "children": {
+                              "cardNumber.tsx": {
+                                "id": "d79cc227-eb95-4f8b-93e8-6aa106237464",
+                                "name": "cardNumber.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "cvc.tsx": {
+                                "id": "5e92f406-bcfa-4151-815b-f3b86add05db",
+                                "name": "cvc.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "expirationDate.tsx": {
+                                "id": "88f37a5d-c01f-44c8-ae23-8bc7b6fb4d65",
+                                "name": "expirationDate.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              }
+                            }
+                          },
+                          "formPaymentMethod.tsx": {
+                            "id": "f277209d-377f-45f0-bf1e-c4af17eba652",
+                            "name": "formPaymentMethod.tsx",
+                            "type": "element",
+                            "subType": "unknown"
+                          },
+                          "paymentInformation.tsx": {
+                            "id": "12a3c443-28bc-41e0-a0de-877525596997",
+                            "name": "paymentInformation.tsx",
+                            "type": "element",
+                            "subType": "unknown"
+                          },
+                          "paymentMethod.tsx": {
+                            "id": "00e5d475-807f-4207-8e7d-9ecf7ccb5cd9",
+                            "name": "paymentMethod.tsx",
+                            "type": "element",
+                            "subType": "unknown"
+                          },
+                          "stripe.tsx": {
+                            "id": "c8e07794-bf0b-43e2-8715-9a0bf7f5a8e0",
+                            "name": "stripe.tsx",
+                            "type": "element",
+                            "subType": "unknown"
+                          }
+                        }
+                      },
+                      "page.tsx": {
+                        "id": "28e6951c-88d4-4856-8915-f9b001d0eb8c",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      }
+                    }
+                  },
+                  "my-account": {
+                    "id": "b886bdc9-f9f3-430a-8898-c8f3f130a77c",
+                    "type": "route",
+                    "name": "my-account",
+                    "path": "/[locale]/saas/(general)/my-account",
+                    "fullPath": "/src/app/[locale]/saas/(general)/my-account",
+                    "subType": "default",
+                    "children": {
+                      "_forms": {
+                        "id": "90f7041b-aea1-4f98-99ec-bd67139b1171",
+                        "type": "route",
+                        "name": "_forms",
+                        "path": "/[locale]/saas/(general)/my-account/_forms",
+                        "fullPath": "/src/app/[locale]/saas/(general)/my-account/_forms",
+                        "subType": "default",
+                        "children": {
+                          "company-form.tsx": {
+                            "id": "21e4d1b1-8725-48ac-94f7-42a00b413e04",
+                            "name": "company-form.tsx",
+                            "type": "element",
+                            "subType": "unknown"
+                          },
+                          "consent-form.tsx": {
+                            "id": "4ae3c6ee-846b-4a02-b53a-d88b66d682b5",
+                            "name": "consent-form.tsx",
+                            "type": "element",
+                            "subType": "unknown"
+                          },
+                          "email-form.tsx": {
+                            "id": "db13fc2b-7d36-49ad-ba06-fdb80b949e1a",
+                            "name": "email-form.tsx",
+                            "type": "element",
+                            "subType": "unknown"
+                          },
+                          "password-form.tsx": {
+                            "id": "e5c62b60-ffa0-4e68-96a7-90e6e115ae1b",
+                            "name": "password-form.tsx",
+                            "type": "element",
+                            "subType": "unknown"
+                          },
+                          "personal-form.tsx": {
+                            "id": "2feb14da-b5fe-493e-bde5-e5ff747374c2",
+                            "name": "personal-form.tsx",
+                            "type": "element",
+                            "subType": "unknown"
+                          }
+                        }
+                      },
+                      "page.tsx": {
+                        "id": "91ec6c13-1598-4842-a666-1a1f465903b0",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      }
+                    }
+                  },
+                  "partner-deals": {
+                    "id": "7a8fa667-fb40-4393-9701-72193ca548dd",
+                    "type": "route",
+                    "name": "partner-deals",
+                    "path": "/[locale]/saas/(general)/partner-deals",
+                    "fullPath": "/src/app/[locale]/saas/(general)/partner-deals",
+                    "subType": "default",
+                    "children": {
+                      "page.tsx": {
+                        "id": "453a8523-b8d6-4fd1-9d01-c31a2064c29f",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      }
+                    }
+                  }
+                }
+              },
+              "dashboard": {
+                "id": "1855bc8c-3fc3-42b4-9d74-ecdcf938dde5",
+                "type": "route",
+                "name": "dashboard",
+                "path": "/[locale]/saas/dashboard",
+                "fullPath": "/src/app/[locale]/saas/dashboard",
+                "subType": "default",
+                "children": {
+                  "(components)": {
+                    "id": "c9d198b2-3255-4eb0-90f3-d6031226b766",
+                    "type": "route",
+                    "name": "(components)",
+                    "path": "/[locale]/saas/dashboard/(components)",
+                    "fullPath": "/src/app/[locale]/saas/dashboard/(components)",
+                    "subType": "container",
+                    "children": {
+                      "(mapCountriesStatusDetails)": {
+                        "id": "134db42c-a04a-4204-b5ca-fe7cda409896",
+                        "type": "route",
+                        "name": "(mapCountriesStatusDetails)",
+                        "path": "/[locale]/saas/dashboard/(components)/(mapCountriesStatusDetails)",
+                        "fullPath": "/src/app/[locale]/saas/dashboard/(components)/(mapCountriesStatusDetails)",
+                        "subType": "container",
+                        "children": {
+                          "countries.json": {
+                            "id": "59b47fe6-2c0b-4164-ac92-bd72de0ddd3c",
+                            "name": "countries.json",
+                            "type": "element",
+                            "subType": "unknown"
+                          },
+                          "index.tsx": {
+                            "id": "fce5939b-d6be-48fd-882b-dc0446497760",
+                            "name": "index.tsx",
+                            "type": "element",
+                            "subType": "unknown"
+                          },
+                          "mapStyle.json": {
+                            "id": "ff41123f-a8c7-4edf-8bc3-c4b7c0b89a7a",
+                            "name": "mapStyle.json",
+                            "type": "element",
+                            "subType": "unknown"
+                          }
+                        }
+                      },
+                      "banner.tsx": {
+                        "id": "0dc71fe2-7fd2-4b20-9626-9ec9ad38aa4e",
+                        "name": "banner.tsx",
+                        "type": "element",
+                        "subType": "unknown"
+                      },
+                      "law-changes-container.tsx": {
+                        "id": "d91c42bb-4809-4d1d-8cd3-8c4a1c259c56",
+                        "name": "law-changes-container.tsx",
+                        "type": "element",
+                        "subType": "unknown"
+                      },
+                      "licenses-container.tsx": {
+                        "id": "111888f2-c7fc-4835-a237-891c02e5c8ca",
+                        "name": "licenses-container.tsx",
+                        "type": "element",
+                        "subType": "unknown"
+                      },
+                      "map-container.tsx": {
+                        "id": "b35bc168-8da6-4fe9-8036-7122513a2481",
+                        "name": "map-container.tsx",
+                        "type": "element",
+                        "subType": "unknown"
+                      },
+                      "tooltipComponent.tsx": {
+                        "id": "f83e682a-85e6-4879-b406-9e73fa388ef3",
+                        "name": "tooltipComponent.tsx",
+                        "type": "element",
+                        "subType": "unknown"
+                      }
+                    }
+                  },
+                  "certificates": {
+                    "id": "517d24ec-fafc-45d4-85d7-d39ef5d559ad",
+                    "type": "route",
+                    "name": "certificates",
+                    "path": "/[locale]/saas/dashboard/certificates",
+                    "fullPath": "/src/app/[locale]/saas/dashboard/certificates",
+                    "subType": "default",
+                    "children": {
+                      "page.tsx": {
+                        "id": "f810a158-03f5-4551-9dd8-2579e2064f13",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      }
+                    }
+                  },
+                  "contracts": {
+                    "id": "d48f5bd4-0d62-4f77-b2ff-59b9216cca6a",
+                    "type": "route",
+                    "name": "contracts",
+                    "path": "/[locale]/saas/dashboard/contracts",
+                    "fullPath": "/src/app/[locale]/saas/dashboard/contracts",
+                    "subType": "default",
+                    "children": {
+                      "contract-data.tsx": {
+                        "id": "bb22b4dc-7fd8-4dea-86a9-db277b269329",
+                        "name": "contract-data.tsx",
+                        "type": "element",
+                        "subType": "unknown"
+                      },
+                      "contract-documents.tsx": {
+                        "id": "d23d9672-f442-4c1f-87f9-2a6cfe2dffb8",
+                        "name": "contract-documents.tsx",
+                        "type": "element",
+                        "subType": "unknown"
+                      },
+                      "layout.tsx": {
+                        "id": "c0386d3e-622d-47a5-b6ae-38c053cb6beb",
+                        "name": "layout.tsx",
+                        "type": "element",
+                        "subType": "layout"
+                      },
+                      "page.tsx": {
+                        "id": "fe8ba746-2bae-43ce-9107-45f52ccda108",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      },
+                      "termination": {
+                        "id": "9ca23a6b-9ee3-4c5c-b439-eff96fc99459",
+                        "type": "route",
+                        "name": "termination",
+                        "path": "/[locale]/saas/dashboard/contracts/termination",
+                        "fullPath": "/src/app/[locale]/saas/dashboard/contracts/termination",
+                        "subType": "default",
+                        "children": {
+                          "[type]": {
+                            "id": "3d5255e0-7fe9-49fc-a4af-232b1a0d3607",
+                            "type": "route",
+                            "name": "[type]",
+                            "path": "/[locale]/saas/dashboard/contracts/termination/[type]",
+                            "fullPath": "/src/app/[locale]/saas/dashboard/contracts/termination/[type]",
+                            "subType": "dynamic",
+                            "param": "type",
+                            "children": {
+                              "page.tsx": {
+                                "id": "7167f47a-2aab-4eab-8f04-db88a407ca11",
+                                "name": "page.tsx",
+                                "type": "element",
+                                "subType": "page"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "declare-volumes": {
+                    "id": "f6d7ee64-bbb6-42ba-94ca-3724f458b5e1",
+                    "type": "route",
+                    "name": "declare-volumes",
+                    "path": "/[locale]/saas/dashboard/declare-volumes",
+                    "fullPath": "/src/app/[locale]/saas/dashboard/declare-volumes",
+                    "subType": "default",
+                    "children": {
+                      "page.tsx": {
+                        "id": "5fe9344a-47e5-4962-b46f-cff3024957a8",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      }
+                    }
+                  },
+                  "invoices": {
+                    "id": "41c86f4a-c0fc-40a8-ac9c-72464dcff559",
+                    "type": "route",
+                    "name": "invoices",
+                    "path": "/[locale]/saas/dashboard/invoices",
+                    "fullPath": "/src/app/[locale]/saas/dashboard/invoices",
+                    "subType": "default",
+                    "children": {
+                      "page.tsx": {
+                        "id": "8ae50d10-e94d-4e46-b1cb-97180414323b",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      }
+                    }
+                  },
+                  "lucid": {
+                    "id": "a0c573c4-c36c-418c-b8fb-960b867ce23c",
+                    "type": "route",
+                    "name": "lucid",
+                    "path": "/[locale]/saas/dashboard/lucid",
+                    "fullPath": "/src/app/[locale]/saas/dashboard/lucid",
+                    "subType": "default",
+                    "children": {
+                      "page.tsx": {
+                        "id": "dd1f4246-c698-409c-9af9-cd8b869dec37",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      }
+                    }
+                  },
+                  "page.tsx": {
+                    "id": "7a6d5dba-e9db-4ff5-9021-f13be8f61f6f",
+                    "name": "page.tsx",
+                    "type": "element",
+                    "subType": "page"
+                  },
+                  "sustainability": {
+                    "id": "6a3f2800-721e-446c-80dc-47b72910f5c0",
+                    "type": "route",
+                    "name": "sustainability",
+                    "path": "/[locale]/saas/dashboard/sustainability",
+                    "fullPath": "/src/app/[locale]/saas/dashboard/sustainability",
+                    "subType": "default",
+                    "children": {
+                      "page.tsx": {
+                        "id": "0a568508-9095-4e1f-beac-96460763a061",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      }
+                    }
+                  }
+                }
+              },
+              "dashboard-eu": {
+                "id": "6ecb1364-017a-48f8-b36d-f9a0c722c1e1",
+                "type": "route",
+                "name": "dashboard-eu",
+                "path": "/[locale]/saas/dashboard-eu",
+                "fullPath": "/src/app/[locale]/saas/dashboard-eu",
+                "subType": "default",
+                "children": {
+                  "certificates": {
+                    "id": "c20bd9bb-f472-4d10-8a29-f158328d09ce",
+                    "type": "route",
+                    "name": "certificates",
+                    "path": "/[locale]/saas/dashboard-eu/certificates",
+                    "fullPath": "/src/app/[locale]/saas/dashboard-eu/certificates",
+                    "subType": "default",
+                    "children": {
+                      "page.tsx": {
+                        "id": "fdcf3deb-3af4-416f-ae80-a399046b77dd",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      }
+                    }
+                  },
+                  "declare-volumes": {
+                    "id": "5e18c97f-5447-4784-b47b-afc11d853d7b",
+                    "type": "route",
+                    "name": "declare-volumes",
+                    "path": "/[locale]/saas/dashboard-eu/declare-volumes",
+                    "fullPath": "/src/app/[locale]/saas/dashboard-eu/declare-volumes",
+                    "subType": "default",
+                    "children": {
+                      "page.tsx": {
+                        "id": "007f66ad-67cf-4688-bc95-91bbd8ae83f1",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      }
+                    }
+                  },
+                  "my-countries": {
+                    "id": "a1b44158-7b1d-4953-a361-dfd32b2706c4",
+                    "type": "route",
+                    "name": "my-countries",
+                    "path": "/[locale]/saas/dashboard-eu/my-countries",
+                    "fullPath": "/src/app/[locale]/saas/dashboard-eu/my-countries",
+                    "subType": "default",
+                    "children": {
+                      "[country]": {
+                        "id": "28764367-e6cb-4e25-ac45-b600a86fd35d",
+                        "type": "route",
+                        "name": "[country]",
+                        "path": "/[locale]/saas/dashboard-eu/my-countries/[country]",
+                        "fullPath": "/src/app/[locale]/saas/dashboard-eu/my-countries/[country]",
+                        "subType": "dynamic",
+                        "param": "country",
+                        "children": {
+                          "(components)": {
+                            "id": "ea2e8a93-ea3e-4e99-bcd4-e61378ad4c6a",
+                            "type": "route",
+                            "name": "(components)",
+                            "path": "/[locale]/saas/dashboard-eu/my-countries/[country]/(components)",
+                            "fullPath": "/src/app/[locale]/saas/dashboard-eu/my-countries/[country]/(components)",
+                            "subType": "container",
+                            "children": {
+                              "contractManagement.tsx": {
+                                "id": "e27e5f28-dae5-4c37-8d4c-a8bffc42c19b",
+                                "name": "contractManagement.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "deadlines.tsx": {
+                                "id": "904c36fd-f5f1-43e2-a109-0dcac1a3af8d",
+                                "name": "deadlines.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "declareVolumes.tsx": {
+                                "id": "84f0ff2c-2d7b-4d93-a0b9-3ded4c200718",
+                                "name": "declareVolumes.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "furtherInformations.tsx": {
+                                "id": "96cccca0-9f59-47ff-b4c9-a7f3e6095187",
+                                "name": "furtherInformations.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "lincensingInformation.tsx": {
+                                "id": "1d5d89e7-0c57-49ec-8bee-1ecdb3de98b2",
+                                "name": "lincensingInformation.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "nextSteps.tsx": {
+                                "id": "841d1090-9053-4d97-b271-35baaa57a2f3",
+                                "name": "nextSteps.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "renderSteps.tsx": {
+                                "id": "595b1de2-b183-4276-ba93-a6f3eda17fdb",
+                                "name": "renderSteps.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "requiredDocumentsInformation.tsx": {
+                                "id": "cabef717-4df0-4787-8647-cde245f6b7c6",
+                                "name": "requiredDocumentsInformation.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "thirdPartyInvoices.tsx": {
+                                "id": "d70a6fd3-6c53-4156-baa4-034972a92e15",
+                                "name": "thirdPartyInvoices.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              }
+                            }
+                          },
+                          "(data)": {
+                            "id": "97c4ed60-29db-40f1-b45f-3769b6404eb8",
+                            "type": "route",
+                            "name": "(data)",
+                            "path": "/[locale]/saas/dashboard-eu/my-countries/[country]/(data)",
+                            "fullPath": "/src/app/[locale]/saas/dashboard-eu/my-countries/[country]/(data)",
+                            "subType": "container",
+                            "children": {
+                              "deadlines.ts": {
+                                "id": "ab09e58f-7e10-4315-b327-86d64cb97be1",
+                                "name": "deadlines.ts",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "furtherInformations.tsx": {
+                                "id": "250cb3a8-fdaf-4498-9d5b-53d538fdf629",
+                                "name": "furtherInformations.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "mock_data.ts": {
+                                "id": "ea6625e0-6147-427d-b85a-36fb0563e3c9",
+                                "name": "mock_data.ts",
+                                "type": "element",
+                                "subType": "unknown"
+                              },
+                              "requiredDocuments.tsx": {
+                                "id": "33b85b90-c4f6-418d-ba5a-b36fb6f35785",
+                                "name": "requiredDocuments.tsx",
+                                "type": "element",
+                                "subType": "unknown"
+                              }
+                            }
+                          },
+                          "page.tsx": {
+                            "id": "5c2dfcdd-c304-42fd-8b9d-4ac073975647",
+                            "name": "page.tsx",
+                            "type": "element",
+                            "subType": "page"
+                          }
+                        }
+                      },
+                      "page.tsx": {
+                        "id": "f675efed-2706-4351-bd78-23ccc9da01db",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      }
+                    }
+                  },
+                  "page.tsx": {
+                    "id": "0ac56f88-473b-4784-8102-1938f6b5523c",
+                    "name": "page.tsx",
+                    "type": "element",
+                    "subType": "page"
+                  },
+                  "required-information": {
+                    "id": "6eeb083d-e0a7-46fd-a802-b5a1ef6720a8",
+                    "type": "route",
+                    "name": "required-information",
+                    "path": "/[locale]/saas/dashboard-eu/required-information",
+                    "fullPath": "/src/app/[locale]/saas/dashboard-eu/required-information",
+                    "subType": "default",
+                    "children": {
+                      "[countryId]": {
+                        "id": "e48b5a23-7b52-4138-b722-2ac3647a1a1d",
+                        "type": "route",
+                        "name": "[countryId]",
+                        "path": "/[locale]/saas/dashboard-eu/required-information/[countryId]",
+                        "fullPath": "/src/app/[locale]/saas/dashboard-eu/required-information/[countryId]",
+                        "subType": "dynamic",
+                        "param": "countryId",
+                        "children": {
+                          "layout.tsx": {
+                            "id": "8af928b3-d66e-4bc7-953b-eb653dc1307a",
+                            "name": "layout.tsx",
+                            "type": "element",
+                            "subType": "layout"
+                          },
+                          "page.tsx": {
+                            "id": "0a378c5f-5459-4dbb-8a5e-2e25014ef635",
+                            "name": "page.tsx",
+                            "type": "element",
+                            "subType": "page"
+                          },
+                          "post-mail": {
+                            "id": "51efba36-d28d-42dd-9c31-c77f1176ea9d",
+                            "type": "route",
+                            "name": "post-mail",
+                            "path": "/[locale]/saas/dashboard-eu/required-information/[countryId]/post-mail",
+                            "fullPath": "/src/app/[locale]/saas/dashboard-eu/required-information/[countryId]/post-mail",
+                            "subType": "default",
+                            "children": {
+                              "page.tsx": {
+                                "id": "65fc304c-f397-494c-9b80-40a6a614fc15",
+                                "name": "page.tsx",
+                                "type": "element",
+                                "subType": "page"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "page.tsx": {
+                        "id": "6f3b2900-c529-4553-a903-a7dedf288ff1",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      }
+                    }
+                  },
+                  "third-party-invoices": {
+                    "id": "07b8ed13-5038-404f-8166-c14aaa5eb585",
+                    "type": "route",
+                    "name": "third-party-invoices",
+                    "path": "/[locale]/saas/dashboard-eu/third-party-invoices",
+                    "fullPath": "/src/app/[locale]/saas/dashboard-eu/third-party-invoices",
+                    "subType": "default",
+                    "children": {
+                      "page.tsx": {
+                        "id": "f6b0dcac-507f-4461-a803-6dfdb5eb6f69",
+                        "name": "page.tsx",
+                        "type": "element",
+                        "subType": "page"
+                      }
+                    }
+                  }
+                }
+              },
+              "layout.tsx": {
+                "id": "e4ac9ef2-4798-447d-81ac-1fe98712abf8",
+                "name": "layout.tsx",
+                "type": "element",
+                "subType": "layout"
+              },
+              "page.tsx": {
+                "id": "d6374545-a29d-4d18-a116-4c6680af21bc",
+                "name": "page.tsx",
+                "type": "element",
+                "subType": "page"
+              }
+            }
+          }
+        }
+      },
+      "api": {
+        "id": "4db3070f-7857-49a7-a817-be2804dd6314",
+        "type": "route",
+        "name": "api",
+        "path": "/api",
+        "fullPath": "/src/app/api",
+        "subType": "default",
+        "children": {
+          "auth": {
+            "id": "0f15e73d-5b36-4c5a-882a-2ca2520dcf2b",
+            "type": "route",
+            "name": "auth",
+            "path": "/api/auth",
+            "fullPath": "/src/app/api/auth",
+            "subType": "default",
+            "children": {
+              "[...nextauth]": {
+                "id": "b01cf73b-70ed-4beb-851f-8e922170cea3",
+                "type": "route",
+                "name": "[...nextauth]",
+                "path": "/api/auth/[...nextauth]",
+                "fullPath": "/src/app/api/auth/[...nextauth]",
+                "subType": "dynamic",
+                "param": "...nextauth",
+                "children": {
+                  "route.ts": {
+                    "id": "6ab440d2-fbb5-4606-b6e4-2df019962ca7",
+                    "name": "route.ts",
+                    "type": "element",
+                    "subType": "unknown"
+                  }
+                }
+              }
+            }
+          },
+          "invite": {
+            "id": "6126bb88-9ac9-42cb-9fb3-cbca01e101fb",
+            "type": "route",
+            "name": "invite",
+            "path": "/api/invite",
+            "fullPath": "/src/app/api/invite",
+            "subType": "default",
+            "children": {
+              "route.ts": {
+                "id": "affc41da-8958-49a7-b95a-6248d2145c5d",
+                "name": "route.ts",
+                "type": "element",
+                "subType": "unknown"
+              }
+            }
+          },
+          "payment": {
+            "id": "a58c3ddb-7b76-45ce-aefb-4fdb7edede51",
+            "type": "route",
+            "name": "payment",
+            "path": "/api/payment",
+            "fullPath": "/src/app/api/payment",
+            "subType": "default",
+            "children": {
+              "route.ts": {
+                "id": "b0236147-dffc-413a-a3ff-7d0c73506979",
+                "name": "route.ts",
+                "type": "element",
+                "subType": "unknown"
+              }
+            }
+          }
+        }
+      },
+      "favicon.ico": {
+        "id": "16b899ac-277b-4f12-94f0-8e2e849daf66",
+        "name": "favicon.ico",
+        "type": "element",
+        "subType": "unknown"
+      },
+      "layout.tsx": {
+        "id": "9051ad5a-92c3-4975-9eab-aef3f5a3df17",
+        "name": "layout.tsx",
+        "type": "element",
+        "subType": "layout"
+      }
+    }
+  }
+}

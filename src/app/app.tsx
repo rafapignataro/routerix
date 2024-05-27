@@ -1,125 +1,83 @@
-import React, { useEffect, useState } from 'react';
-import { DynamicIcon, IconName } from './icons';
+import { useEffect, useState } from 'react';
 
-type BaseNode = {
-  name: string;
-  route: string;
-  icon: IconName;
-};
+import { useSchema } from './use-schema';
+import { Header } from './components/Header';
+import * as vis from "vis-network/standalone/esm";
+import { RouteTree } from './components/RouteTree';
 
-type RootNode = BaseNode & {
-  type: 'root';
-  children: Record<string, RouteNode | ComponentNode>;
-}
-
-type RouteNode = BaseNode & {
-  type: 'route';
-  subType: 'container' | 'dynamic' | 'default';
-  children: Record<string, RouteNode | ComponentNode>;
-}
-
-type ComponentNode = BaseNode & {
-  type: 'component';
-  subType: 'page' | 'layout' | 'not-found';
-};
-
-type Schema = RootNode | RouteNode | ComponentNode;
-
-interface GenerationSchema {
-  createdAt: string;
-  generationTime: number;
-  schema: Schema;
-}
-
-const App: React.FC = () => {
-  const [generation, setGeneration] = useState<GenerationSchema | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadRoutes = async () => {
-      try {
-        // @ts-ignore
-        const schemaJson = await import('./routes.json');
-
-        setGeneration(schemaJson.default as unknown as GenerationSchema);
-      } catch (error) {
-        console.error('Failed to load routes:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadRoutes();
-  }, []);
-
-  if (loading) return <div>Loading...</div>;
-
-  if (!generation) return <div>Failed to load generation</div>;
+export function App() {
+  const [tab, setTab] = useState<'tree' | 'graph'>('tree');
 
   return (
     <div>
-      <div className="px-4 border-b-[1px] border-gray-200">
-        <div className="max-w-screen-xl mx-auto">
-          <h1 className="py-4 font-bold text-2xl">Node Routes</h1>
-        </div>
-      </div>
+      <Header />
       <div className="px-4">
-        <div className="max-w-screen-xl mx-auto border-gray-200 py-10">
-          <h2 className="font-bold text-2xl pb-4">Route Tree</h2>
-          {generation && <SchemaComponent schema={generation.schema} />}
+        <div className="max-w-screen-xl mx-auto border-gray-200 py-5">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setTab('tree')}
+              data-active={tab === 'tree'}
+              className="px-4 py-2 rounded-lg text-md bg-gray-100 hover:bg-gray-200 data-[active=true]:bg-gray-800 data-[active=true]:text-white transition-all duration-200"
+            >Tree</button>
+            <button
+              onClick={() => setTab('graph')}
+              data-active={tab === 'graph'}
+              className="px-4 py-2 rounded-lg text-md bg-gray-100 hover:bg-gray-200 data-[active=true]:bg-gray-800 data-[active=true]:text-white transition-all duration-200"
+            >Graph</button>
+          </div>
         </div>
       </div>
+      {tab === 'tree' && <TreeTab />}
+      {tab === 'graph' && <GraphTab />}
     </div>
   );
 };
 
-export default App;
-
-interface SchemaComponentProps {
-  schema: Schema;
-}
-
-function SchemaComponent({ schema }: SchemaComponentProps) {
-  if (schema.type === 'root' || schema.type === 'route') return (
-    <details className="group w-full rounded-md open:rounded-xl">
-      <summary className="flex flex-col py-1 ">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <DynamicIcon name="chevronRight" className="w-5 h-5 group-open:rotate-90 transition-all" />
-            <div className="bg-gray-200 p-2 flex items-center justify-center rounded-md">
-              <DynamicIcon name={schema.icon} className="h-4 w-4 stroke-2 text-gray-400" />
-            </div>
-            <p className="text-lg font-bold">{schema.name}</p>
-            <div className="bg-blue-700 px-1 rounded-full font-bold text-white text-xs">{schema.type}</div>
-          </div>
-          <span className="text-gray-600">{schema.route}</span>
-        </div>
-      </summary>
-      {schema.children && !!Object.values(schema.children).length && (
-        <ul className="ml-4">
-          {Object.entries(schema.children).map(([key, childNode]) => (
-            <li key={key}>
-              <SchemaComponent schema={childNode} />
-            </li>
-          ))}
-        </ul>
-      )}
-    </details>
-  )
+function TreeTab() {
+  const schema = useSchema();
 
   return (
-    <div className="w-full py-1 pr-0">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-5"></div>
-          <div className="bg-gray-200 p-2 flex items-center justify-center rounded-md">
-            <DynamicIcon name={schema.icon} className="h-4 w-4 stroke-2 text-gray-400" />
-          </div>
-          <p className="text-lg font-bold">{schema.name}</p>
-          <div className="bg-blue-700 px-1 rounded-full font-bold text-white text-xs">{schema.type}</div>
-        </div>
-        <span className="text-gray-600">{schema.route}</span>
+    <div className="px-4">
+      <div className="max-w-screen-xl mx-auto border-gray-200 py-3">
+        <RouteTree route={schema.routes} />
       </div>
     </div>
-  );
-};
+  )
+}
+
+function GraphTab() {
+  const schema = useSchema();
+
+  useEffect(() => {
+    const nodes = new vis.DataSet([
+      { id: 1, label: "Node 1", x: 0, y: 0 },
+      { id: 2, label: "Node 2", x: 100, y: -50 },
+      { id: 3, label: "Node 3", x: 100, y: 50 },
+      { id: 4, label: "Node 4", x: 200, y: -80 },
+      { id: 5, label: "Node 5", x: 200, y: -20 },
+      { id: 6, label: "Node 6", x: 200, y: 20 },
+    ]) as vis.DataSetNodes;
+
+    const edges = new vis.DataSet([
+      { id: 1, from: 1, to: 2 },
+      { id: 2, from: 1, to: 3 },
+      { id: 3, from: 2, to: 4 },
+      { id: 4, from: 2, to: 5 },
+      { id: 5, from: 3, to: 6 },
+    ]) as vis.DataSetEdges;
+
+    new vis.Network(
+      document.getElementById("vis-container")!,
+      { nodes, edges },
+      { physics: false, }
+    );
+  }, []);
+
+  return (
+    <div className="px-4">
+      <div className="max-w-screen-xl mx-auto border-gray-200 py-3">
+        <div id="vis-container" className='w-full h-[50dvh]'></div>
+      </div>
+    </div>
+  )
+}
