@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { useSchema } from './use-schema';
 import { Header } from './components/Header';
-import * as vis from "vis-network/standalone/esm";
 import { RouteTree } from './components/RouteTree';
+import { RouteGraph } from './components/RouteGraph';
 
 export function App() {
   const [tab, setTab] = useState<'tree' | 'graph'>('tree');
@@ -48,35 +48,10 @@ function TreeTab() {
 function GraphTab() {
   const schema = useSchema();
 
-  useEffect(() => {
-    const nodes = new vis.DataSet([
-      { id: 1, label: "Node 1", x: 0, y: 0 },
-      { id: 2, label: "Node 2", x: 100, y: -50 },
-      { id: 3, label: "Node 3", x: 100, y: 50 },
-      { id: 4, label: "Node 4", x: 200, y: -80 },
-      { id: 5, label: "Node 5", x: 200, y: -20 },
-      { id: 6, label: "Node 6", x: 200, y: 20 },
-    ]) as vis.DataSetNodes;
-
-    const edges = new vis.DataSet([
-      { id: 1, from: 1, to: 2 },
-      { id: 2, from: 1, to: 3 },
-      { id: 3, from: 2, to: 4 },
-      { id: 4, from: 2, to: 5 },
-      { id: 5, from: 3, to: 6 },
-    ]) as vis.DataSetEdges;
-
-    new vis.Network(
-      document.getElementById("vis-container")!,
-      { nodes, edges },
-      { physics: false, }
-    );
-  }, []);
-
   return (
     <div className="px-4">
       <div className="max-w-screen-xl mx-auto border-gray-200 py-3">
-        <div id="vis-container" className='w-full h-[50dvh]'></div>
+        <RouteGraph route={schema.routes} />
       </div>
     </div>
   )

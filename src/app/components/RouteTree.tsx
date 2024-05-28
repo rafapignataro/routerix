@@ -12,12 +12,12 @@ function cn(...args: string[]) {
 
 export function RouteTree({ route }: RouteTreeProps) {
   return (
-    <details className={cn(`group/${route.name}`, "w-full rounded-md open:rounded-xl relative")}>
+    <details className={cn(`group/${route.name}`, "w-full rounded-md open:rounded-xl relative [&>summary>div>div>svg]:open:rotate-90 [&>.ident-helper]:open:block")}>
       <summary className="flex flex-col">
         <div className="flex items-center justify-between gap-5 relative">
           <div className="flex items-center gap-1">
             <Icon name="chevronRight" className={cn(
-              `group-open/${route.name}:rotate-90`,
+              `group-open/${route.name}:rotate-90 folder-chevron`,
               "w-4 h-4 transition-all"
             )} />
             <div className="py-2 px-0 flex items-center justify-center rounded-md">
