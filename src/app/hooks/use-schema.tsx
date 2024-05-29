@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext, ReactNode, useContext } from 'react';
-import { Schema } from '../types';
+import { Schema } from '../../types';
 
 const SchemaContext = createContext<Schema>({} as Schema);
 
@@ -15,7 +15,7 @@ export function SchemaProvider({ children }: SchemaProviderProps) {
     const loadRoutes = async () => {
       try {
         // @ts-ignore
-        const schemaJson = await import('./schema.json');
+        const schemaJson = await import('../schema.json');
 
         setSchema(schemaJson.default as unknown as Schema);
       } catch (error) {
@@ -42,7 +42,7 @@ export function SchemaProvider({ children }: SchemaProviderProps) {
 export function useSchema() {
   const context = useContext(SchemaContext);
 
-  if (!context) throw new Error(`${useSchema.name} can't be used outside of ${SchemaProvider.name}.`);
+  if (!context || !Object.keys(context).length) throw new Error(`${useSchema.name} can't be used outside of ${SchemaProvider.name}.`);
 
   return context;
 }
