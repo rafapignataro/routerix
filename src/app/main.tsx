@@ -5,7 +5,7 @@ import { App } from './app';
 import { SchemaProvider } from './hooks/use-schema';
 
 import './index.css';
-import { TabProvider } from './hooks/use-tab';
+import { RouteProvider } from './hooks/use-route';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
@@ -13,9 +13,9 @@ const root = createRoot(container!);
 root.render(
   <React.StrictMode>
     <SchemaProvider>
-      <TabProvider>
+      <RouteProvider>
         <App />
-      </TabProvider>
+      </RouteProvider>
     </SchemaProvider>
   </React.StrictMode>
 );

@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactFlow, {
   addEdge,
   ConnectionLineType,
@@ -17,9 +17,9 @@ import dagre from 'dagre';
 import 'reactflow/dist/style.css';
 import { Route } from '../../types';
 import { Icon } from './Icons';
+import { useRoute } from '../hooks/use-route';
 
-const dagreGraph = new dagre.graphlib.Graph();
-dagreGraph.setDefaultEdgeLabel(() => ({}));
+
 
 const nodeWidth = 172;
 const nodeHeight = 36;
@@ -66,7 +66,10 @@ function getNodesAndEdges(
   nodes.push({
     id: nodeId,
     type: !parent ? 'input' : undefined,
-    data: { label: routes.name },
+    data: {
+      label: routes.name,
+      route: routes
+    },
     position: { x: 0, y: 0 },
     className: `font-bold border-2 ${parent ? 'bg-gray-100' : 'bg-blue-600 text-white'}`,
     style: {
@@ -102,21 +105,24 @@ function getNodesAndEdges(
 function getLayoutedNodesAndEdges(nodes: Node[], edges: Edge[], direction = 'TB') {
   const isHorizontal = direction === 'LR';
 
+  const dagreGraph = new dagre.graphlib.Graph();
+  dagreGraph.setDefaultEdgeLabel(() => ({}));
+
   dagreGraph.setGraph({
     rankdir: direction, // Direction for rank nodes. Can be TB, BT, LR, or RL, where T = top, B = bottom, L = left, and R = right.
     align: undefined, // Alignment for rank nodes. Can be UL, UR, DL, or DR, where U = up, D = down, L = left, and R = right.
-    nodesep: 25, // Number of pixels that separate nodes horizontally in the layout.
+    nodesep: 50, // Number of pixels that separate nodes horizontally in the layout.
     edgesep: 10, // Number of pixels that separate edges horizontally in the layout.
-    ranksep: 50, // Number of pixels between each rank in the layout.
+    ranksep: 250, // Number of pixels between each rank in the layout.
     marginx: 0, // Number of pixels to use as a margin around the left and right of the graph.
     marginy: 0, // Number of pixels to use as a margin around the top and bottom of the graph.
-    acyclicer: 'greedy', // If set to greedy, uses a greedy heuristic for finding a feedback arc set for a graph. A feedback arc set is a set of edges that can be removed to make a graph acyclic.
+    acyclicer: undefined, // If set to greedy, uses a greedy heuristic for finding a feedback arc set for a graph. A feedback arc set is a set of edges that can be removed to make a graph acyclic.
     ranker: 'network-simplex', // Type of algorithm to assigns a rank to each node in the input graph. Possible values: network-simplex, tight-tree or longest-path
   });
 
   nodes.forEach((node) => dagreGraph.setNode(node.id, {
     width: nodeWidth,
-    height: nodeHeight
+    height: nodeHeight,
   }));
 
   edges.forEach((edge) => dagreGraph.setEdge(edge.source, edge.target));
@@ -142,14 +148,16 @@ function getLayoutedNodesAndEdges(nodes: Node[], edges: Edge[], direction = 'TB'
 type GraphDirection = 'TB' | 'BT' | 'LR' | 'RL';
 
 interface RouteGraphProps {
-  route: Route;
 }
 
-export function RouteGraph({ route }: RouteGraphProps) {
+export function RouteGraph({ }: RouteGraphProps) {
+  const { route, setRoute } = useRoute();
+
   const layouted = useMemo(() => {
+
     const { nodes, edges } = getNodesAndEdges(route);
 
-    const layouted = getLayoutedNodesAndEdges(nodes, edges, 'TB');
+    const layouted = getLayoutedNodesAndEdges(nodes, edges, 'LR');
 
     return layouted;
   }, [route.id]);
@@ -174,8 +182,16 @@ export function RouteGraph({ route }: RouteGraphProps) {
       setNodes([...layouted.nodes]);
       setEdges([...layouted.edges]);
     },
-    [nodes, edges]
+    [route.id, nodes, edges]
   );
+
+  const handleClickNode = useCallback((node: Node) => {
+    const isCurrent = node.data.route.id === route.id;
+
+    if (isCurrent) return;
+
+    setRoute(node.data.route);
+  }, [route.id]);
 
   return (
     <ReactFlow
@@ -183,6 +199,7 @@ export function RouteGraph({ route }: RouteGraphProps) {
       edges={edges}
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
+      onNodeClick={(_, node) => handleClickNode(node)}
       onConnect={onConnect}
       connectionLineType={ConnectionLineType.SmoothStep}
       fitView
@@ -217,13 +234,13 @@ function RouteGraphPanel({ onDirection }: RouteGraphPanelProps) {
   }
 
   return (
-    <Panel position="top-left" className="bg-white shadow-md m-1 p-2 border-[1px] rounded-md border-gray-200 w-48">
-      <p className="font-bold text-gray-800 bg-">Controls</p>
+    <Panel position="top-right" className="bg-white shadow-md m-1 p-2 border-[1px] rounded-md border-gray-200 w-48">
+      <p className="font-bold text-gray-800 text-right">Controls</p>
       <div className="h-[1px] w-full bg-gray-100 mb-2"></div>
       <div className="space-y-3">
         <div className="space-y-1">
-          <p className="text-xs font-semibold text-gray-800">Direction</p>
-          <div className="flex gap-2">
+          <p className="text-xs font-semibold text-gray-800 text-right">Direction</p>
+          <div className="flex gap-2 items-center justify-end">
             <button
               onClick={() => handleDescription('TB')}
               className="p-2 rounded-lg text-sm bg-gray-100 hover:bg-gray-200 data-[active=true]:bg-gray-900 data-[active=true]:text-white transition-all duration-200"
