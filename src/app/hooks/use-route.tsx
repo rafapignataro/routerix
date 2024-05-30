@@ -6,7 +6,11 @@ export type Tab = 'TREE' | 'GRAPH';
 
 interface RouteContextProps {
   route: Route;
+  previousRoute?: Route;
+  nextRoute?: Route;
   setRoute: (route: Route) => void;
+  previous: () => void;
+  next: () => void;
 }
 
 const RouteContext = createContext({} as RouteContextProps);
@@ -18,15 +22,44 @@ interface RouteProviderProps {
 export function RouteProvider({ children }: RouteProviderProps) {
   const schema = useSchema();
 
-  const [route, setRoute] = useState<Route>(schema.routes);
+  const [routes, setRoutes] = useState<{ previous?: Route, current: Route, next?: Route }>({ current: schema.routes });
 
   function handleSetRoute(route: Route) {
-    setRoute(route)
+    setRoutes(currentRoutes => ({
+      previous: currentRoutes.current,
+      current: route
+    }));
   }
 
-  console.log('ROUTE OG', route)
+  function handlePrevious() {
+    if (!routes.previous) return;
+
+    setRoutes(currentRoutes => ({
+      previvous: undefined,
+      current: currentRoutes.previous!,
+      next: currentRoutes.current
+    }));
+  }
+
+  function handleNext() {
+    if (!routes.next) return;
+
+    setRoutes(currentRoutes => ({
+      previvous: currentRoutes.current,
+      current: currentRoutes.next!,
+      next: undefined
+    }));
+  }
+
   return (
-    <RouteContext.Provider value={{ route, setRoute: handleSetRoute }}>
+    <RouteContext.Provider value={{
+      route: routes.current,
+      previousRoute: routes.previous,
+      nextRoute: routes.next,
+      setRoute: handleSetRoute,
+      previous: handlePrevious,
+      next: handleNext
+    }}>
       {children}
     </RouteContext.Provider>
   )

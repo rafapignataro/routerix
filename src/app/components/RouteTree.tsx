@@ -31,8 +31,8 @@ export function RouteTree({ route }: RouteTreeProps) {
             <div className="py-2 px-0 flex items-center justify-center rounded-md">
               <RouteIcon name={route.subType} className="route-icon h-4 w-4 stroke-2 text-gray-800" />
             </div>
-            <div className="flex items-center gap-2">
-              <p className="text-sm">{route.name}</p>
+            <div className="flex items-center gap-2 overflow-hidden">
+              <p className="text-sm text-nowrap text-ellipsis w-full">{route.name}</p>
             </div>
           </div>
         </div>

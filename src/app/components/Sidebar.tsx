@@ -6,10 +6,10 @@ export function Sidebar() {
 
   return (
     <div className="h-full w-64 bg-white shadow-md border-r-[1px] border-gray-200 overflow-hidden">
-      <div className="h-16 w-full">
+      <div className="h-16 w-full border-b-[1px] border-gray-200">
         <h1 className="p-4 font-bold text-2xl">Atlas</h1>
       </div>
-      <div className="p-4 overflow-y-auto">
+      <div className="p-4 overflow-y-auto flex flex-col h-full">
         <p className="font-semibold text-sm text-gray-600">Routes</p>
         <div className="py-2">
           <RouteTree route={schema.routes} />

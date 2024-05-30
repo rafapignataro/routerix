@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import ReactFlow, {
   addEdge,
   ConnectionLineType,
@@ -11,6 +11,8 @@ import ReactFlow, {
   Position,
   useReactFlow,
   useStoreApi,
+  Handle,
+  NodeProps,
 } from 'reactflow';
 import dagre from 'dagre';
 
@@ -18,11 +20,10 @@ import 'reactflow/dist/style.css';
 import { Route } from '../../types';
 import { Icon } from './Icons';
 import { useRoute } from '../hooks/use-route';
+import { RouteIcon } from './RouteIcons';
 
-
-
-const nodeWidth = 172;
-const nodeHeight = 36;
+const NODE_WIDTH = 172;
+const NODE_HEIGHT = 36;
 
 function getRandomColor() {
   const colors = ['#1abc9c', '#2ecc71', '#3498db', '#9b59b6', '#f1c40f', '#e67e22', '#e74c3c'];
@@ -61,20 +62,15 @@ function getNodesAndEdges(
 ) {
   const nodeId = String(nodes.length + 1);
 
-  const color = !parent ? 'blue' : level > 1 ? parent.color : getRandomColor();
+  const color = !parent ? '#1d4ed8' : level > 1 ? parent.color : getRandomColor();
 
   nodes.push({
     id: nodeId,
-    type: !parent ? 'input' : undefined,
-    data: {
-      label: routes.name,
-      route: routes
-    },
+    type: !parent ? 'rootRoute' : 'route',
+    data: routes,
     position: { x: 0, y: 0 },
-    className: `font-bold border-2 ${parent ? 'bg-gray-100' : 'bg-blue-600 text-white'}`,
-    style: {
-      borderColor: color
-    }
+    className: 'font-bold border-2 rounded-sm',
+    style: { borderColor: color }
   });
 
   const children = Object.values(routes.children);
@@ -121,8 +117,8 @@ function getLayoutedNodesAndEdges(nodes: Node[], edges: Edge[], direction = 'TB'
   });
 
   nodes.forEach((node) => dagreGraph.setNode(node.id, {
-    width: nodeWidth,
-    height: nodeHeight,
+    width: NODE_WIDTH,
+    height: NODE_HEIGHT,
   }));
 
   edges.forEach((edge) => dagreGraph.setEdge(edge.source, edge.target));
@@ -135,8 +131,8 @@ function getLayoutedNodesAndEdges(nodes: Node[], edges: Edge[], direction = 'TB'
     node.sourcePosition = isHorizontal ? Position.Right : Position.Bottom;
 
     node.position = {
-      x: nodeWithPosition.x - nodeWidth / 2,
-      y: nodeWithPosition.y - nodeHeight / 2,
+      x: nodeWithPosition.x - NODE_WIDTH / 2,
+      y: nodeWithPosition.y - NODE_HEIGHT / 2,
     };
 
     return node;
@@ -185,13 +181,18 @@ export function RouteGraph({ }: RouteGraphProps) {
     [route.id, nodes, edges]
   );
 
-  const handleClickNode = useCallback((node: Node) => {
-    const isCurrent = node.data.route.id === route.id;
+  const handleClickNode = useCallback((node: Node<Route>) => {
+    const isCurrent = node.data.id === route.id;
 
     if (isCurrent) return;
 
-    setRoute(node.data.route);
+    setRoute(node.data);
   }, [route.id]);
+
+  const nodeTypes = useMemo(() => ({
+    rootRoute: RouteRootNode,
+    route: RouteNode
+  }), []);
 
   return (
     <ReactFlow
@@ -204,6 +205,7 @@ export function RouteGraph({ }: RouteGraphProps) {
       connectionLineType={ConnectionLineType.SmoothStep}
       fitView
       minZoom={0}
+      nodeTypes={nodeTypes}
     >
       <RouteGraphPanel onDirection={(dir) => onLayout(dir)} />
     </ReactFlow>
@@ -258,4 +260,34 @@ function RouteGraphPanel({ onDirection }: RouteGraphPanelProps) {
       </div>
     </Panel>
   )
+}
+
+function RouteNode(node: NodeProps<Route>) {
+  const route = node.data;
+
+  return (
+    <>
+
+      <div className="group flex items-center px-4 py-3 gap-4 text-gray-700 relative bg-gray-50 hover:bg-gray-200/50">
+        <RouteIcon name={route.subType} />
+        <p>{route.name}</p>
+      </div>
+      <Handle type="target" position={Position.Left} />
+      <Handle type="source" position={Position.Right} />
+    </>
+  );
+}
+
+function RouteRootNode(node: NodeProps<Route>) {
+  const route = node.data;
+
+  return (
+    <>
+      <div className="group flex items-center px-4 py-3 gap-4 bg-blue-500 text-white">
+        <RouteIcon name={route.subType} />
+        <p>{route.name}</p>
+      </div>
+      <Handle type="source" position={Position.Right} />
+    </>
+  );
 }
