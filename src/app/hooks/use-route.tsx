@@ -35,7 +35,7 @@ export function RouteProvider({ children }: RouteProviderProps) {
     if (!routes.previous) return;
 
     setRoutes(currentRoutes => ({
-      previvous: undefined,
+      previous: undefined,
       current: currentRoutes.previous!,
       next: currentRoutes.current
     }));
@@ -45,7 +45,7 @@ export function RouteProvider({ children }: RouteProviderProps) {
     if (!routes.next) return;
 
     setRoutes(currentRoutes => ({
-      previvous: currentRoutes.current,
+      previous: currentRoutes.current,
       current: currentRoutes.next!,
       next: undefined
     }));
