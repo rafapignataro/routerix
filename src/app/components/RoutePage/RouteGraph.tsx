@@ -16,11 +16,12 @@ import ReactFlow, {
 } from 'reactflow';
 import dagre from 'dagre';
 
+import { Route } from '../../../types';
+import { useRoute } from '../../hooks/use-route';
+import { RouteIcon } from '../RouteIcons';
+import { ArrowDown, ArrowRight } from 'lucide-react';
+
 import 'reactflow/dist/style.css';
-import { Route } from '../../types';
-import { Icon } from './Icons';
-import { useRoute } from '../hooks/use-route';
-import { RouteIcon } from './RouteIcons';
 
 const NODE_WIDTH = 172;
 const NODE_HEIGHT = 36;
@@ -31,26 +32,6 @@ function getRandomColor() {
   const colorIndex = Math.floor(Math.random() * colors.length);
 
   return colors[colorIndex]!;
-}
-
-function lightenColor(hex: string, level = 1) {
-  // Remove the hash at the start if it's there
-  hex = hex.replace(/^#/, '');
-
-  // Parse the hex color into RGB components
-  let r = parseInt(hex.substring(0, 2), 16);
-  let g = parseInt(hex.substring(2, 4), 16);
-  let b = parseInt(hex.substring(4, 6), 16);
-
-  // Increase each component by the given percentage
-  r = Math.min(255, Math.floor(r * (1 + (level * 5) / 100)));
-  g = Math.min(255, Math.floor(g * (1 + (level * 5) / 100)));
-  b = Math.min(255, Math.floor(b * (1 + (level * 5) / 100)));
-
-  // Convert the RGB components back to a hex string
-  const newColor = `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
-
-  return newColor;
 }
 
 function getNodesAndEdges(
@@ -141,7 +122,7 @@ function getLayoutedNodesAndEdges(nodes: Node[], edges: Edge[], direction = 'TB'
   return { nodes, edges };
 };
 
-type GraphDirection = 'TB' | 'BT' | 'LR' | 'RL';
+export type GraphDirection = 'TB' | 'BT' | 'LR' | 'RL';
 
 interface RouteGraphProps {
 }
@@ -207,7 +188,6 @@ export function RouteGraph({ }: RouteGraphProps) {
       minZoom={0}
       nodeTypes={nodeTypes}
     >
-      <RouteGraphPanel onDirection={(dir) => onLayout(dir)} />
     </ReactFlow>
   );
 };
@@ -236,7 +216,7 @@ function RouteGraphPanel({ onDirection }: RouteGraphPanelProps) {
   }
 
   return (
-    <Panel position="top-right" className="bg-white shadow-md m-1 p-2 border-[1px] rounded-md border-gray-200 w-48">
+    <Panel position="top-right" className="bg-white shadow-lg m-1 p-2 border-[1px] rounded-md border-gray-200 w-48">
       <p className="font-bold text-gray-800 text-right">Controls</p>
       <div className="h-[1px] w-full bg-gray-100 mb-2"></div>
       <div className="space-y-3">
@@ -247,13 +227,13 @@ function RouteGraphPanel({ onDirection }: RouteGraphPanelProps) {
               onClick={() => handleDescription('TB')}
               className="p-2 rounded-lg text-sm bg-gray-100 hover:bg-gray-200 data-[active=true]:bg-gray-900 data-[active=true]:text-white transition-all duration-200"
             >
-              <Icon name="arrowRight" className="h-4 w-4 rotate-90" />
+              <ArrowDown className="h-4 w-4" />
             </button>
             <button
               onClick={() => handleDescription('LR')}
               className="p-2 rounded-lg text-sm bg-gray-100 hover:bg-gray-200 data-[active=true]:bg-gray-900 data-[active=true]:text-white transition-all duration-200"
             >
-              <Icon name="arrowRight" className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4" />
             </button>
           </div>
         </div>
