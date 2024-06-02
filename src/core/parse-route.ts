@@ -16,21 +16,29 @@ export function parseRoute(config: Config, routePath: string): Route {
   const routeFiles = fs.readdirSync(routeResolvedPath, { withFileTypes: true });
 
   const route: Route = {
+    kind: 'route',
     id: crypto.randomUUID(),
-    type: 'route',
     name: routeName,
     path: routePath.replace(config.rootPath, '') || '/',
     fullPath: routePath,
     ...getRouteData(routeName),
-    children: {}
+    routes: {},
+    elements: {}
   };
 
   for (const routeFile of routeFiles) {
-    route.children[routeFile.name] = parseRouteElement(
+    const element = parseRouteElement(
       config,
       path.join(routePath, routeFile.name)
     );
+
+    if (element.kind === 'route') route.routes[routeFile.name] = element;
+    if (element.kind === 'element') route.elements[routeFile.name] = element;
   }
 
   return route;
+}
+
+function isRoute() {
+
 }

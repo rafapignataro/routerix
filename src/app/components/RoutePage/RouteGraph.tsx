@@ -35,7 +35,7 @@ function getRandomColor() {
 }
 
 function getNodesAndEdges(
-  routes: Route,
+  route: Route,
   nodes: Node[] = [],
   edges: Edge[] = [],
   parent?: { id: string, color: string },
@@ -48,17 +48,15 @@ function getNodesAndEdges(
   nodes.push({
     id: nodeId,
     type: !parent ? 'rootRoute' : 'route',
-    data: routes,
+    data: route,
     position: { x: 0, y: 0 },
     className: 'font-bold border-2 rounded-sm',
     style: { borderColor: color }
   });
 
-  const children = Object.values(routes.children);
+  const routes = Object.values(route.routes);
 
-  children.forEach(child => {
-    if (child.type !== 'route') return;
-
+  routes.forEach(subRoute => {
     const from = nodeId;
     const to = String(nodes.length + 1);
 
@@ -73,7 +71,7 @@ function getNodesAndEdges(
       }
     });
 
-    getNodesAndEdges(child, nodes, edges, { id: nodeId, color }, level + 1);
+    getNodesAndEdges(subRoute, nodes, edges, { id: nodeId, color }, level + 1);
   });
 
   return { nodes, edges };
@@ -247,9 +245,8 @@ function RouteNode(node: NodeProps<Route>) {
 
   return (
     <>
-
       <div className="group flex items-center px-4 py-3 gap-4 text-gray-700 relative bg-gray-50 hover:bg-gray-200/50">
-        <RouteIcon name={route.subType} />
+        <RouteIcon name={route.type} />
         <p>{route.name}</p>
       </div>
       <Handle type="target" position={Position.Left} />
@@ -264,7 +261,7 @@ function RouteRootNode(node: NodeProps<Route>) {
   return (
     <>
       <div className="group flex items-center px-4 py-3 gap-4 bg-blue-500 text-white">
-        <RouteIcon name={route.subType} />
+        <RouteIcon name={route.type} />
         <p>{route.name}</p>
       </div>
       <Handle type="source" position={Position.Right} />

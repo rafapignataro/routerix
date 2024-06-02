@@ -5,19 +5,20 @@ export interface Config {
 export interface Route {
   id: string;
   name: string;
-  type: 'route';
-  subType: 'default' | 'container' | 'dynamic';
+  kind: 'route';
+  type: 'default' | 'container' | 'dynamic' | 'api';
   path: string;
   fullPath: string;
   parentId?: string;
-  children: Record<string, Route | RouteElement>;
+  routes: Record<string, Route>;
+  elements: Record<string, Route | RouteElement>;
 };
 
 export interface RouteElement {
   id: string;
   name: string;
-  type: 'element';
-  subType: 'page' | 'layout' | 'loading' | 'not-found' | 'unknown';
+  kind: 'element';
+  type: 'page' | 'layout' | 'loading' | 'not-found' | 'unknown';
 };
 
 export interface Schema {

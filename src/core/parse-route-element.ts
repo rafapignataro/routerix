@@ -14,9 +14,9 @@ export function parseRouteElement(config: Config, elementPath: string): Route | 
   if (elementStats.isDirectory()) return parseRoute(config, elementPath);
 
   const routeElement: RouteElement = {
+    kind: 'element',
     id: crypto.randomUUID(),
     name: elementName,
-    type: 'element',
     ...getRouteElementData(elementName)
   }
 

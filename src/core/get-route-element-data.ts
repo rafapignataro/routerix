@@ -2,17 +2,17 @@ export function getRouteElementData(route: string) {
   switch (route) {
     case "page.tsx":
     case "page.js":
-      return { subType: "page" } as const;
+      return { type: "page" } as const;
     case "layout.tsx":
     case "layout.js":
-      return { subType: "layout" } as const;
+      return { type: "layout" } as const;
     case "loading.tsx":
     case "loading.js":
-      return { subType: "loading" } as const;
+      return { type: "loading" } as const;
     case "not-found.tsx":
     case "not-found.js":
-      return { subType: "not-found" } as const;
+      return { type: "not-found" } as const;
     default:
-      return { subType: "unknown" } as const;
+      return { type: "unknown" } as const;
   }
 }
