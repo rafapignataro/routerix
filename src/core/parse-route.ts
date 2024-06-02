@@ -6,7 +6,7 @@ import { getRouteData } from './get-route-data';
 import { parseRouteElement } from './parse-route-element';
 import { PATHS_CONFIG } from '..';
 
-export function parseRoute(config: Config, routePath: string): Route {
+export function parseRoute(config: Config, routePath: string) {
   const routeName = path.basename(routePath);
   const routeResolvedPath = path.resolve(path.join(PATHS_CONFIG.APP_PATH, routePath));
   const routeStats = fs.statSync(routeResolvedPath);
@@ -15,12 +15,14 @@ export function parseRoute(config: Config, routePath: string): Route {
 
   const routeFiles = fs.readdirSync(routeResolvedPath, { withFileTypes: true });
 
+  const isRoot = routePath.replace(config.rootPath, '') === '';
+
   const route: Route = {
     kind: 'route',
     id: crypto.randomUUID(),
-    name: routeName,
-    path: routePath.replace(config.rootPath, '') || '/',
-    fullPath: routePath,
+    name: isRoot ? 'root' : routeName,
+    path: isRoot ? '/' : `/${routeName}`,
+    fullPath: routePath.replace(config.rootPath, '') || '/',
     ...getRouteData(routeName),
     routes: {},
     elements: {}
@@ -32,9 +34,47 @@ export function parseRoute(config: Config, routePath: string): Route {
       path.join(routePath, routeFile.name)
     );
 
-    if (element.kind === 'route') route.routes[routeFile.name] = element;
+    if (!element) continue;
+
+    if (element.kind === 'route') {
+      if (element.type === 'container') {
+        route.routes = { ...route.routes, ...element.routes };
+        continue;
+      }
+
+      route.routes[routeFile.name] = element;
+
+      continue;
+    }
+
     if (element.kind === 'element') route.elements[routeFile.name] = element;
   }
+
+  const routeRoutes = Object.values(route.routes);
+  const routeElements = Object.values(route.elements);
+
+  if (!routeRoutes.length && !routeElements.length) return null;
+
+  if (
+    !routeRoutes.length &&
+    (!route.elements['page.tsx'] && !route.elements['route.ts'])
+  ) return null;
+
+
+  const sortedRoutes = routeRoutes
+    .sort((a, b) => {
+      const hasChildrenA = !!Object.keys(a.routes).length;
+      const hasChildrenB = !!Object.keys(b.routes).length;
+
+      if (hasChildrenA && !hasChildrenB) return -1;
+
+      if (!hasChildrenA && hasChildrenB) return 1;
+
+      return 0;
+    })
+
+  route.routes = {};
+  sortedRoutes.forEach(r => route.routes[r.name] = r)
 
   return route;
 }

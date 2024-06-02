@@ -22,7 +22,7 @@ export function RouteTree({ route }: RouteTreeProps) {
 
 
   if (!isParent) return (
-    <div className="w-full relative" title={`Navigate to ${route.name} route`}>
+    <div className="w-full relative" title={`Navigate to ${route.path} route`}>
       <div
         data-current={isCurrent}
         onClick={handleSetCurrentRoute}
@@ -41,7 +41,7 @@ export function RouteTree({ route }: RouteTreeProps) {
           <div className="py-2 px-0 flex items-center justify-center">
             <RouteIcon name={route.type} className="route-icon h-4 w-4 stroke-2" />
           </div>
-          <p className="text-sm text-nowrap text-ellipsis overflow-hidden w-full">/{route.name}</p>
+          <p className="text-sm text-nowrap text-ellipsis overflow-hidden w-full">{route.path}</p>
           {!isCurrent && (
             <div className="route-popover hidden flex-1 items-end px-2">
               <MoveRight className="size-4 stroke-gray-600" />
@@ -56,7 +56,7 @@ export function RouteTree({ route }: RouteTreeProps) {
   return (
     <details
       className="w-full relative [&>summary>div>.folder-chevron]:open:rotate-90 [&>.ident-helper]:open:block"
-      title={`Navigate to ${route.name} route`}
+      title={`Navigate to ${route.path} route`}
     >
       <summary
         data-current={isCurrent}
@@ -76,7 +76,7 @@ export function RouteTree({ route }: RouteTreeProps) {
           <div className="py-2 px-0 flex items-center justify-center">
             <RouteIcon name={route.type} className="route-icon h-4 w-4 stroke-2" />
           </div>
-          <p className="text-sm text-nowrap text-ellipsis overflow-hidden w-full">/{route.name}</p>
+          <p className="text-sm text-nowrap text-ellipsis overflow-hidden w-full">{route.path}</p>
           {!isCurrent && (
             <div className="route-popover hidden flex-1 items-end px-2">
               <MoveRight className="size-4 stroke-gray-600" />

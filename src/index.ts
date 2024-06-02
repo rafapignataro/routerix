@@ -68,6 +68,8 @@ export async function generate() {
 
   const routes = parseRoute(preparedConfig, preparedConfig.rootPath);
 
+  if (!routes) throw new Error('❌ Root directory is empty');
+
   const schema: Schema = {
     id: crypto.randomUUID(),
     createdAt: new Date().getTime(),
