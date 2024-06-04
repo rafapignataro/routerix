@@ -15,12 +15,8 @@ export function RoutePage() {
         <div className="flex-1 shadow-inner shadow-gray-200 flex">
           <RouteGraph key={currentRoute.route.path} />
           <div className="flex-none h-full w-72 bg-white border-l-[1px] z-10 shadow-md shadow-gray-200">
-            <div className="flex items-center justify-between px-4 py-2 border-b-[1px] border-gray-200">
-              <p className="text-sm font-semibold text-gray-600">Route details</p>
-              <button className="group flex-none hover:bg-gray-100 p-1 rounded-md">
-                <X className="size-5 text-gray-600 group-hover:text-gray-800" />
-              </button>
-            </div>
+            <p className="px-4 py-2 font-semibold text-sm text-gray-600">Route details</p>
+            <div className="w-full border-b-[1px] border-gray-200"></div>
             <div className="space-y-2 p-4">
               <div>
                 <span className="text-gray-400 text-sm">Route</span>
