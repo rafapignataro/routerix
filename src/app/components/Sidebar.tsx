@@ -14,7 +14,7 @@ export function Sidebar() {
       <div className="overflow-y-auto flex flex-col h-full">
         <p className="px-4 py-2 font-semibold text-sm text-gray-600">Routes</p>
         <div className="w-full border-b-[1px] border-gray-200"></div>
-        <div className="pb-10 overflow-auto">
+        <div className="pl-4 pb-10 overflow-auto">
           <RouteTree route={schema.routes} />
         </div>
       </div>
