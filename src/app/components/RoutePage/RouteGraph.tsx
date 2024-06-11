@@ -18,7 +18,6 @@ import dagre from 'dagre';
 
 import { Route } from '../../../types';
 import { useRoute } from '../../hooks/use-route';
-import { RouteIcon } from '../RouteIcons';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 
 import 'reactflow/dist/style.css';
@@ -43,15 +42,12 @@ function getNodesAndEdges(
 ) {
   const nodeId = String(nodes.length + 1);
 
-  const color = !parent ? '#1d4ed8' : level > 1 ? parent.color : getRandomColor();
-
   nodes.push({
     id: nodeId,
     type: !parent ? 'rootRoute' : 'route',
     data: route,
     position: { x: 0, y: 0 },
-    className: 'font-bold border-2 rounded-sm',
-    style: { borderColor: color }
+    className: 'font-bold border-0',
   });
 
   const routes = Object.values(route.routes);
@@ -67,11 +63,11 @@ function getNodesAndEdges(
       type: 'smoothstep',
       animated: true,
       style: {
-        stroke: parent ? color : 'black'
+        stroke: '#1F2937'
       }
     });
 
-    getNodesAndEdges(subRoute, nodes, edges, { id: nodeId, color }, level + 1);
+    getNodesAndEdges(subRoute, nodes, edges, { id: nodeId, color: '' }, level + 1);
   });
 
   return { nodes, edges };
@@ -245,9 +241,9 @@ function RouteNode(node: NodeProps<Route>) {
 
   return (
     <>
-      <div className="group flex items-center px-4 py-3 gap-4 text-gray-700 relative bg-gray-50 hover:bg-gray-200/50">
-        <RouteIcon name={route.type} />
-        <p>{route.name}</p>
+      <div className="group flex items-center px-4 py-3 gap-4 rounded-sm border-2 transition-all duration-300 bg-gray-50 hover:bg-gray-100 text-gray-700">
+        <div className="h-2 w-2 bg-gray-300 rounded-full"></div>
+        <p>{route.path}</p>
       </div>
       <Handle type="target" position={Position.Left} />
       <Handle type="source" position={Position.Right} />
@@ -260,9 +256,9 @@ function RouteRootNode(node: NodeProps<Route>) {
 
   return (
     <>
-      <div className="group flex items-center px-4 py-3 gap-4 bg-blue-500 text-white">
-        <RouteIcon name={route.type} />
-        <p>{route.name}</p>
+      <div className="group flex items-center px-4 py-3 gap-4 rounded-sm border-2 transition-all duration-300 bg-blue-500 hover:bg-blue-600 border-blue-600 text-white">
+        <div className="h-2 w-2 bg-white rounded-full"></div>
+        <p>{route.path}</p>
       </div>
       <Handle type="source" position={Position.Right} />
     </>

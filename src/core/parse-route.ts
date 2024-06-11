@@ -17,12 +17,15 @@ export function parseRoute(config: Config, routePath: string) {
 
   const isRoot = routePath.replace(config.rootPath, '') === '';
 
+  const rawFullPath = routePath.replace(config.rootPath, '') || '/';
+  const rawFullPathParts = rawFullPath.split('/').filter(part => part[0] !== '(' && part.at(-1) !== ')');
+
   const route: Route = {
     kind: 'route',
     id: crypto.randomUUID(),
     name: isRoot ? 'root' : routeName,
     path: isRoot ? '/' : `/${routeName}`,
-    fullPath: routePath.replace(config.rootPath, '') || '/',
+    fullPath: rawFullPathParts.join('/'),
     ...getRouteData(routeName),
     routes: {},
     elements: {}
