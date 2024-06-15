@@ -57,7 +57,7 @@ export function RouteTree({ route }: RouteTreeProps) {
       {isParent && (
         <div className="route-children pl-4 relative">
           {(Object.keys(route.routes).length > 1) && (
-            <div data-path={route.path} className="route-children-ident h-full w-[1px] bg-green-400 absolute left-1 -top-4"></div>
+            <div data-path={route.path} className="route-children-ident h-full w-[1px] bg-gray-400 absolute left-1 -top-4"></div>
           )}
           {Object.values(route.routes).map((subRoute) => <RouteTree key={subRoute.id} route={subRoute} />)}
         </div>

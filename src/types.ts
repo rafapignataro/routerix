@@ -16,6 +16,7 @@ export interface Route {
 
 export interface RouteElement {
   id: string;
+  parentId?: string;
   name: string;
   kind: 'element';
   type: 'page' | 'layout' | 'loading' | 'not-found' | 'unknown';
@@ -24,5 +25,6 @@ export interface RouteElement {
 export interface Schema {
   id: string;
   createdAt: number;
-  routes: Route;
+  graph: Route;
+  list: Route[];
 }

@@ -66,14 +66,15 @@ export async function generate() {
 
   const preparedConfig = prepareConfig(config);
 
-  const routes = parseRoute(preparedConfig, preparedConfig.rootPath);
+  const parsedRoute = parseRoute(preparedConfig, preparedConfig.rootPath);
 
-  if (!routes) throw new Error('❌ Root directory is empty');
+  if (!parsedRoute) throw new Error('❌ Root directory is empty');
 
   const schema: Schema = {
     id: crypto.randomUUID(),
     createdAt: new Date().getTime(),
-    routes,
+    graph: parsedRoute.route,
+    list: parsedRoute.list,
   }
 
   saveFile({

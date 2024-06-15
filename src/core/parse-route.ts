@@ -1,12 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 
-import { Config, Route } from "../types";
+import { Config, Route, RouteElement } from "../types";
 import { getRouteData } from './get-route-data';
-import { parseRouteElement } from './parse-route-element';
 import { PATHS_CONFIG } from '..';
+import { getRouteElementData } from './get-route-element-data';
 
-export function parseRoute(config: Config, routePath: string) {
+export function parseRoute(config: Config, routePath: string, parentId?: string, list: Route[] = []) {
   const routeName = path.basename(routePath);
   const routeResolvedPath = path.resolve(path.join(PATHS_CONFIG.APP_PATH, routePath));
   const routeStats = fs.statSync(routeResolvedPath);
@@ -23,34 +23,49 @@ export function parseRoute(config: Config, routePath: string) {
   const route: Route = {
     kind: 'route',
     id: crypto.randomUUID(),
+    parentId,
     name: isRoot ? 'root' : routeName,
     path: isRoot ? '/' : `/${routeName}`,
     fullPath: rawFullPathParts.join('/'),
     ...getRouteData(routeName),
     routes: {},
-    elements: {}
+    elements: {},
   };
 
+  if (route.type !== 'container') list.push(route);
+
   for (const routeFile of routeFiles) {
-    const element = parseRouteElement(
-      config,
-      path.join(routePath, routeFile.name)
-    );
+    const routeFilePath = path.join(routePath, routeFile.name);
+    const routeResolvedPath = path.resolve(path.join(PATHS_CONFIG.APP_PATH, routeFilePath));
 
-    if (!element) continue;
+    const routeFileName = path.basename(routeResolvedPath);
 
-    if (element.kind === 'route') {
-      if (element.type === 'container') {
-        route.routes = { ...route.routes, ...element.routes };
+    const routeFileStats = fs.statSync(routeResolvedPath);
+
+    if (routeFileStats.isDirectory()) {
+      const parsedRoute = parseRoute(config, routeFilePath, parentId, list);
+
+      if (!parsedRoute) continue;
+
+      if (parsedRoute.route.type === 'container') {
+        route.routes = { ...route.routes, ...parsedRoute.route.routes };
         continue;
       }
 
-      route.routes[routeFile.name] = element;
+      route.routes[routeFile.name] = parsedRoute.route;
 
       continue;
     }
 
-    if (element.kind === 'element') route.elements[routeFile.name] = element;
+    const routeElement: RouteElement = {
+      kind: 'element',
+      id: crypto.randomUUID(),
+      parentId,
+      name: routeFileName,
+      ...getRouteElementData(routeFileName)
+    }
+
+    route.elements[routeFile.name] = routeElement;
   }
 
   const routeRoutes = Object.values(route.routes);
@@ -62,7 +77,6 @@ export function parseRoute(config: Config, routePath: string) {
     !routeRoutes.length &&
     (!route.elements['page.tsx'] && !route.elements['route.ts'])
   ) return null;
-
 
   const sortedRoutes = routeRoutes
     .sort((a, b) => {
@@ -79,9 +93,5 @@ export function parseRoute(config: Config, routePath: string) {
   route.routes = {};
   sortedRoutes.forEach(r => route.routes[r.name] = r)
 
-  return route;
-}
-
-function isRoute() {
-
+  return { route, list };
 }

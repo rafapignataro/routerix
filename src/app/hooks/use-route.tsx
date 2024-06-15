@@ -22,7 +22,7 @@ interface RouteProviderProps {
 export function RouteProvider({ children }: RouteProviderProps) {
   const schema = useSchema();
 
-  const [routes, setRoutes] = useState<{ previous?: Route, current: Route, next?: Route }>({ current: schema.routes });
+  const [routes, setRoutes] = useState<{ previous?: Route, current: Route, next?: Route }>({ current: schema.graph });
 
   function handleSetRoute(route: Route) {
     setRoutes(currentRoutes => ({
