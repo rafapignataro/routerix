@@ -24,12 +24,12 @@ export function RouteTree({ route }: RouteTreeProps) {
       className="
         route-parent
         w-full relative
-        [&>summary>div>.folder-chevron]:open:rotate-90
+        [&>summary_.folder-chevron]:open:rotate-90
+        [&:not(:last-child)>.route-ident]:open:block
       "
       title={`Navigate to ${route.path} route`}
       data-current={isCurrent}
     >
-      {/* <div className="ident-helper hidden h-[calc(100%-32px)] w-[1px] bg-red-400 absolute left-1 top-4"></div> */}
       <summary
         data-current={isCurrent}
         onClick={handleSetCurrentRoute}
@@ -49,18 +49,20 @@ export function RouteTree({ route }: RouteTreeProps) {
         <p className="text-sm text-nowrap text-ellipsis overflow-hidden w-full">{route.path}</p>
 
         {isParent && (
-          <div className="flex-none pr-2">
+          <div className="flex-none mr-2" onClick={() => { }}>
             <ChevronRight className="folder-chevron h-4 w-4 flex-none transition-all" />
           </div>
         )}
       </summary>
       {isParent && (
-        <div className="route-children pl-4 relative">
-          {(Object.keys(route.routes).length > 1) && (
-            <div data-path={route.path} className="route-children-ident h-full w-[1px] bg-gray-400 absolute left-1 -top-4"></div>
-          )}
-          {Object.values(route.routes).map((subRoute) => <RouteTree key={subRoute.id} route={subRoute} />)}
-        </div>
+        <>
+          <div className="route-ident hidden h-full w-[1px] bg-gray-400 absolute -left-3 -top-4"></div>
+          <div className="route-children pl-4 relative">
+            {Object.values(route.routes).map((subRoute) => (
+              <RouteTree key={subRoute.id} route={subRoute} />
+            ))}
+          </div>
+        </>
       )}
     </details>
   )
