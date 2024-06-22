@@ -6,7 +6,7 @@ import { generate, init, preview } from '.';
 const program = new Command();
 
 program
-  .name('node-routes')
+  .name('Atlas.js')
   .description('Generate a UI for your routes! 🛣️')
   .version('1.0.0');
 

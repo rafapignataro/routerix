@@ -9,12 +9,12 @@ import { loadConfig } from './core/load-config';
 import { parseRoute } from './core/parse-route';
 
 export const PATHS_CONFIG = (() => {
-  const LIBRARY_PATH = path.resolve(process.cwd(), 'node_modules', 'node-routes');
+  const LIBRARY_PATH = path.resolve(process.cwd(), 'node_modules', 'atlas.js');
   const LIBRARY_VITE_PATH = path.resolve(LIBRARY_PATH, 'src', 'app');
   const LIBRARY_VITE_BUILD_PATH = path.resolve(LIBRARY_PATH, 'build');
   const APP_PATH = process.cwd();
-  const APP_GENERATION_PATH = path.resolve(APP_PATH, '.node-routes');
-  const APP_GENERATION_BUILD_PATH = path.resolve(APP_PATH, '.node-routes', 'build');
+  const APP_GENERATION_PATH = path.resolve(APP_PATH, '.atlas');
+  const APP_GENERATION_BUILD_PATH = path.resolve(APP_PATH, '.atlas', 'build');
 
   return {
     LIBRARY_PATH,
@@ -43,16 +43,16 @@ function prepareConfig(config: Config) {
 function createDefaultConfig() {
   // TODO: Make this type work in final file
   const content = `
-/** @type {import('node-routes').Config}') */
+/** @type {import('atlas.js').Config}') */
 module.exports = {
   rootPath: './src/app'
 }
   `.trim();
 
-  fs.writeFile('node-routes.config.js', content, (err) => {
+  fs.writeFile('atlas.config.js', content, (err) => {
     if (err) return console.error('Error writing file:', err);
 
-    console.log('✅ Config file (node-routes.config.js) created successfully.');
+    console.log('✅ Config file (atlas.config.js) created successfully.');
   });
 }
 
@@ -62,7 +62,7 @@ export async function init() {
 }
 
 export async function generate() {
-  const config = await loadConfig(path.join(process.cwd(), 'node-routes.config.js'));
+  const config = await loadConfig(path.join(process.cwd(), 'atlas.config.js'));
 
   const preparedConfig = prepareConfig(config);
 
@@ -98,7 +98,7 @@ export async function generate() {
 
     copyDir(PATHS_CONFIG.LIBRARY_VITE_BUILD_PATH, PATHS_CONFIG.APP_GENERATION_BUILD_PATH);
 
-    console.log('✅ UI build files (.node-routes) created successfully!');
+    console.log('✅ UI build files (.atlas) created successfully!');
   });
 }
 
