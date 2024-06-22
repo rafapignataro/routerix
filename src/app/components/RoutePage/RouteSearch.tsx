@@ -1,4 +1,4 @@
-import { Search, MoveRight } from "lucide-react";
+import { Search, MoveRight, SearchX } from "lucide-react";
 import { useSchema } from "../../hooks/use-schema";
 import { ChangeEvent, useState } from "react";
 import { useRoute } from "../../hooks/use-route";
@@ -27,7 +27,7 @@ export function RouteSearch() {
   );
 
   return (
-    <label htmlFor="search-input" className="flex items-center p-2 gap-2 border-[1px] border-gray-200 rounded-md w-full max-w-80 bg-gray-50">
+    <label htmlFor="search-input" className="flex items-center p-2 gap-2 border-[1px] border-gray-200 rounded-md w-full max-w-[480px] bg-gray-50">
       <Search className="size-4 text-gray-600" />
       <input
         id="search-input"
@@ -36,7 +36,7 @@ export function RouteSearch() {
         value={search}
         onChange={handleSearch}
       />
-      <div className="hidden peer-focus:block absolute top-full left-1/2 -translate-x-1/2 translate-y-2 rounded-sm p-1 z-50 w-full max-w-[480px] max-h-[240px] overflow-y-auto bg-white border-[1px]">
+      <div className="hidden peer-focus:block absolute top-full left-1/2 -translate-x-1/2 translate-y-2 rounded-md p-1 z-50 w-full max-w-[480px] max-h-[240px] overflow-y-auto bg-white border-[1px]">
         <div className="w-full">
           {filteredList.map((route) => (
             <div
@@ -54,6 +54,12 @@ export function RouteSearch() {
               </div>
             </div>
           ))}
+          {!filteredList.length && (
+            <div className="w-full px-2 py-1 flex items-center gap-3">
+              <SearchX className="size-4 text-gray-600" />
+              <p className="text-sm text-gray-600">No routes found</p>
+            </div>
+          )}
         </div>
       </div>
     </label>
