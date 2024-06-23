@@ -1,5 +1,5 @@
 import { useState, createContext, ReactNode, useContext } from 'react';
-import { Route } from '../../types';
+import { Route } from '../../lib/core/types';
 import { useSchema } from './use-schema';
 
 export type Tab = 'TREE' | 'GRAPH';

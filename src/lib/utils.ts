@@ -13,7 +13,7 @@ export function saveFile({ fileName, destination, content }: SaveFileProps) {
   fs.writeFile(dest, content, (err) => {
     if (err) return console.error('Error writing file:', err);
 
-    console.log('✅ Schema created successfully!');
+    return true;
   });
 }
 

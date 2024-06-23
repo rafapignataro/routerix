@@ -3,7 +3,6 @@ import { useRoute } from "../../hooks/use-route";
 
 import { Header } from "./Header";
 import { RouteGraph } from "./RouteGraph";
-import { X } from "lucide-react";
 
 export function RoutePage() {
   const currentRoute = useRoute();

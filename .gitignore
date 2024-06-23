@@ -1,7 +1,5 @@
 node_modules
 build
 dist
-sandbox
-sandbox.js
 .DS_STORE
 schema.json

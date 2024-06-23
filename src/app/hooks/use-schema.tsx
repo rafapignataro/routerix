@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext, ReactNode, useContext } from 'react';
-import { Schema } from '../../types';
+import { Schema } from '../../lib/core/types';
 
 const SchemaContext = createContext<Schema>({} as Schema);
 

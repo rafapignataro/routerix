@@ -2,7 +2,7 @@ import { Search, MoveRight, SearchX } from "lucide-react";
 import { useSchema } from "../../hooks/use-schema";
 import { ChangeEvent, useState } from "react";
 import { useRoute } from "../../hooks/use-route";
-import { Route } from "../../../types";
+import { Route } from "../../../lib/core/types";
 
 export function RouteSearch() {
   const { list } = useSchema();

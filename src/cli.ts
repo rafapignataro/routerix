@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { generate, init, preview } from '.';
+import { generate, init, preview } from './lib';
 
 const program = new Command();
 

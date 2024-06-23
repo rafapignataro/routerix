@@ -16,7 +16,7 @@ import ReactFlow, {
 } from 'reactflow';
 import dagre from 'dagre';
 
-import { Route } from '../../../types';
+import { Route } from '../../../lib/core/types';
 import { useRoute } from '../../hooks/use-route';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 

@@ -1,5 +1,5 @@
 import { ChevronRight } from "lucide-react";
-import { Route } from "../../types";
+import { Route } from "../../lib/core/types";
 import { useRoute } from "../hooks/use-route";
 
 type RouteTreeProps = {
