@@ -17,6 +17,6 @@ export type ParseRouteParams = {
 export type Provider =
   | 'nextjs-app';
 
-export const providers = {
+export const providers: Record<Provider, () => BaseProvider> = {
   'nextjs-app': () => new NextJsAppProvider(),
 }
