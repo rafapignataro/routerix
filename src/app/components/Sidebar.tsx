@@ -1,9 +1,12 @@
 import { Network } from "lucide-react";
 import { useSchema } from "../hooks/use-schema";
 import { RouteTree } from "./RouteTree";
+import { MutableRefObject, useState } from "react";
+import { useRouteTree } from "../hooks/use-route-tree";
 
 export function Sidebar() {
   const schema = useSchema();
+  const routeTree = useRouteTree();
 
   return (
     <div className="flex flex-col h-full w-80 bg-white border-r-[1px] border-gray-200 flex-none">
@@ -13,7 +16,7 @@ export function Sidebar() {
       </div>
       <div className="overflow-y-auto flex flex-col h-full">
         <div className="flex items-center justify-between px-4 py-2">
-          <p className="font-semibold text-sm text-gray-600">Routes</p>
+          <p className="font-semibold text-sm text-gray-600" onClick={() => routeTree.closeAll()}>Routes</p>
           <div className="text-xs text-gray-600">
             <span className="font-semibold">{schema.list.length}</span> routes
           </div>

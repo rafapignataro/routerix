@@ -36,7 +36,7 @@ export class NextJsAppProvider implements BaseProvider {
     }
   }
 
-  parseRoute({ config, routePath, parentId, list = [] }: ParseRouteParams) {
+  parseRoute({ config, routePath, parentId = null, list = [] }: ParseRouteParams) {
     const routeName = path.basename(routePath);
     const routeResolvedPath = path.resolve(path.join(CONFIG_PATHS.APP_PATH, routePath));
     const routeStats = fs.statSync(routeResolvedPath);
@@ -50,8 +50,10 @@ export class NextJsAppProvider implements BaseProvider {
     const rawFullPath = routePath.replace(config.rootPath, '') || '/';
     const rawFullPathParts = rawFullPath.split('/').filter(part => part[0] !== '(' && part.at(-1) !== ')');
 
+    const routeId = crypto.randomUUID();
+
     const route: Route = {
-      id: crypto.randomUUID(),
+      id: routeId,
       parentId,
       name: isRoot ? 'root' : routeName,
       path: isRoot ? '/' : `/${routeName}`,
@@ -72,7 +74,12 @@ export class NextJsAppProvider implements BaseProvider {
       const routeFileStats = fs.statSync(routeResolvedPath);
 
       if (routeFileStats.isDirectory()) {
-        const parsedRoute = this.parseRoute({ config, routePath: routeFilePath, parentId, list });
+        const parsedRoute = this.parseRoute({
+          config,
+          routePath: routeFilePath,
+          parentId: route.type !== 'container' ? routeId : parentId,
+          list
+        });
 
         if (!parsedRoute) continue;
 
@@ -88,7 +95,7 @@ export class NextJsAppProvider implements BaseProvider {
 
       const routeElement: RouteElement = {
         id: crypto.randomUUID(),
-        parentId,
+        parentId: routeId,
         name: routeFileName,
         type: this.getRouteElementType(routeFileName)
       }

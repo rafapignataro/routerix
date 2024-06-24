@@ -21,6 +21,7 @@ export function RouteTree({ route }: RouteTreeProps) {
 
   return (
     <details
+      id={`route-tree-${route.id}`}
       className="
         route-parent
         w-full relative
@@ -39,7 +40,6 @@ export function RouteTree({ route }: RouteTreeProps) {
           [&>.guide-line-dot]:data-[current=true]:bg-blue-500
         "
       >
-        {/* <div className="hover-background hidden absolute right-0 bg-gray-50 h-8 w-80"></div> */}
         <div className="guide-line-dot z-10 h-2 w-2 mr-2 rounded-full bg-gray-400 *:bg-gray-400 flex-none relative" />
 
         <div className="guide-line-horizontal h-[1px] w-3 bg-gray-400 absolute top-4 -translate-y-1/2 right-full" />

@@ -10,7 +10,7 @@ export interface BaseProvider {
 export type ParseRouteParams = {
   config: Config;
   routePath: string;
-  parentId?: string;
+  parentId: string | null;
   list?: Route[]
 };
 

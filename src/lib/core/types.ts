@@ -8,14 +8,14 @@ export interface Route {
   type: RouteType;
   path: string;
   fullPath: string;
-  parentId?: string;
+  parentId: string | null;
   routes: Record<string, Route>;
   elements: Record<string, Route | RouteElement>;
 };
 
 export interface RouteElement {
   id: string;
-  parentId?: string;
+  parentId: string;
   name: string;
   type: RouteElementType;
 };
@@ -39,21 +39,3 @@ export type RouteElementType =
   | 'loading'
   | 'not-found'
   | 'unknown';
-
-export interface BaseProvider {
-  getRouteType: (routeName: string) => RouteType;
-  getRouteElementType: (elementName: string) => RouteElementType;
-  parseRoute: (params: ParseRouteParams) => ParseRouteResponse;
-}
-
-export type ParseRouteParams = {
-  config: Config;
-  routePath: string;
-  parentId?: string;
-  list?: Route[]
-};
-
-export type ParseRouteResponse = { route: Route; list: Route[] } | null;
-
-export type Providers =
-  | 'nextjs-app';

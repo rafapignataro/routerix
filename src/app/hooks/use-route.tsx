@@ -1,6 +1,7 @@
 import { useState, createContext, ReactNode, useContext } from 'react';
 import { Route } from '../../lib/core/types';
 import { useSchema } from './use-schema';
+import { useRouteTree } from './use-route-tree';
 
 export type Tab = 'TREE' | 'GRAPH';
 
@@ -8,7 +9,7 @@ interface RouteContextProps {
   route: Route;
   previousRoute?: Route;
   nextRoute?: Route;
-  setRoute: (route: Route) => void;
+  setRoute: (route: Route, triggerTree?: boolean) => void;
   previous: () => void;
   next: () => void;
 }
@@ -21,14 +22,17 @@ interface RouteProviderProps {
 
 export function RouteProvider({ children }: RouteProviderProps) {
   const schema = useSchema();
+  const routeTree = useRouteTree();
 
   const [routes, setRoutes] = useState<{ previous?: Route, current: Route, next?: Route }>({ current: schema.graph });
 
-  function handleSetRoute(route: Route) {
+  function handleSetRoute(route: Route, triggerTree = false) {
     setRoutes(currentRoutes => ({
       previous: currentRoutes.current,
       current: route
     }));
+
+    if (triggerTree && route.parentId) routeTree.open(route.id, true);
   }
 
   function handlePrevious() {
@@ -39,6 +43,8 @@ export function RouteProvider({ children }: RouteProviderProps) {
       current: currentRoutes.previous!,
       next: currentRoutes.current
     }));
+
+    if (routes.previous && routes.previous.parentId) routeTree.open(routes.previous.id, true);
   }
 
   function handleNext() {
@@ -49,6 +55,8 @@ export function RouteProvider({ children }: RouteProviderProps) {
       current: currentRoutes.next!,
       next: undefined
     }));
+
+    if (routes.next && routes.next.parentId) routeTree.open(routes.next.id, true);
   }
 
   return (

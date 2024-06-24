@@ -161,7 +161,7 @@ export function RouteGraph({ }: RouteGraphProps) {
 
     if (isCurrent) return;
 
-    setRoute(node.data);
+    setRoute(node.data, true);
   }, [route.id]);
 
   const nodeTypes = useMemo(() => ({
