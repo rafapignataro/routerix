@@ -20,6 +20,6 @@ export async function buildApp() {
 
     copyDir(CONFIG_PATHS.LIBRARY_VITE_BUILD_PATH, CONFIG_PATHS.APP_GENERATION_BUILD_PATH);
 
-    console.log('✅ UI build files (.atlas) created successfully!');
+    console.log('✅ UI build files (.routerix) created successfully!');
   });
 }

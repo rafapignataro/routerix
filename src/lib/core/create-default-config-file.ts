@@ -5,7 +5,7 @@ import { saveFile } from '../utils';
 export async function createDefaultConfigFile() {
   // TODO: Make this type work in final file
   const content = `
-/** @type {import('atlas.js').Config}') */
+/** @type {import('routerix').Config}') */
 module.exports = {
   rootPath: './src/app'
 }
@@ -16,10 +16,10 @@ module.exports = {
   }
 
   saveFile({
-    fileName: 'atlas.config.js',
+    fileName: 'routerix.config.js',
     destination: CONFIG_PATHS.APP_PATH,
     content
   });
 
-  console.log('✅ Config file (atlas.config.js) created successfully.');
+  console.log('✅ Config file (routerix.config.js) created successfully.');
 }

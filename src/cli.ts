@@ -6,7 +6,7 @@ import { generate, init, preview } from './lib';
 const program = new Command();
 
 program
-  .name('Atlas.js')
+  .name('Routerix')
   .description('Generate a UI for your routes! 🛣️')
   .version('1.0.0');
 
