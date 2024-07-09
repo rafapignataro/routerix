@@ -1,6 +1,6 @@
 import path from 'path';
 
-const LIBRARY_PATH = path.resolve(process.cwd(), 'node_modules', 'routerix.js')
+const LIBRARY_PATH = path.resolve(process.cwd(), 'node_modules', 'routerix')
 const APP_PATH = process.cwd();
 
 export const CONFIG_PATHS = {

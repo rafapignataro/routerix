@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { generate, init, preview } from './lib';
+import { generate, init, preview } from '../lib';
 
 const program = new Command();
 
@@ -10,24 +10,26 @@ program
   .description('Generate a UI for your routes! 🛣️')
   .version('1.0.0');
 
-
 program
   .command('init')
-  .description('Creates a config file where you can better define properties 👷')
+  .description('create config file - not required if using cli args')
   .action(() => {
     init();
   });
 
 program
   .command('generate')
-  .description('Creates your route-based static UI 🙅‍♂️')
-  .action(() => {
+  .description('generate Routerix app based on your routes')
+  .option('-r, --rootPath', 'Routes root path')
+  .action((str, options) => {
+    console.log(str)
+    console.log(options)
     generate();
   });
 
 program
   .command('preview')
-  .description('Preview your route-based UI in a development server 🫣')
+  .description('preview Routerix app in a development server')
   .action(() => {
     preview();
   });

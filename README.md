@@ -14,24 +14,26 @@ pnpm install routerix
 
 ### 2. Create the config file
 
+Optional. Its possible to pass all config parameters via CLI
+
 ```sh
 pnpm routerix init
 ```
 
-### 3. Run the CLI
+### 3. Generate the files
 
 ```sh
 pnpm routerix generate
 ```
 
-### 3. Access your UI
+### 3. Access your routes UI
 
-Now, you have a folder called <b>.routerix</b> in your project. This is the static UI for your routes.
+Now you have a folder called __.routerix__ in your project. This is the static UI for your routes.
 
 You can visualize it locally with a local server. Deploy it to a bucket in your CI. Its your decision.
 
-### Frameworks supported
+### Supported frameworks
 
-| Framework     |
-|---------------|
-| Next.js App   |
+| Framework     | CLI Argument     |
+|---------------|------------------|
+| Next.js App   | nextjs-app       |
