@@ -1,19 +1,24 @@
 import path from 'path';
 
 import { loadConfigFile } from "./load-config-file";
-import { Schema } from "./types";
+import { Config, Schema } from "./types";
 import { Provider, providers } from '../providers';
 import { saveFile } from '../utils';
 import { CONFIG_PATHS } from './get-config-paths';
 
-export async function createSchema(providerName: Provider) {
-  const config = await loadConfigFile(CONFIG_PATHS.APP_CONFIG_PATH);
+interface CreateSchemaParams {
+  provider: Provider;
+  rootPath: string;
+}
 
-  const provider = providers[providerName]();
+export async function createSchema(config: Config) {
+
+  const provider = providers[config.provider]();
 
   const parsedRoute = provider.parseRoute({
     config: config,
-    routePath: config.rootPath
+    routePath: config.rootPath,
+    parentId: null
   });
 
   if (!parsedRoute) throw new Error('❌ Root directory is empty');

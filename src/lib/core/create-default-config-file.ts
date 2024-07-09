@@ -3,10 +3,10 @@ import { CONFIG_PATHS } from './get-config-paths';
 import { saveFile } from '../utils';
 
 export async function createDefaultConfigFile() {
-  // TODO: Make this type work in final file
   const content = `
 /** @type {import('routerix').Config}') */
 module.exports = {
+  provider: 'nextjs-app',
   rootPath: './src/app'
 }
   `.trim();

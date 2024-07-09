@@ -14,7 +14,7 @@ pnpm install routerix
 
 ### 2. Create the config file
 
-Optional. Its possible to pass all config parameters via CLI
+Optional step if using CLI args. Its possible to pass all config parameters via CLI. Its not possible yet to split config between file and CLI args. Choose one approach.
 
 ```sh
 pnpm routerix init
@@ -22,8 +22,16 @@ pnpm routerix init
 
 ### 3. Generate the files
 
+With config file
+
 ```sh
 pnpm routerix generate
+```
+
+Without config file
+
+```sh
+pnpm routerix generate --provider nextjs-app --rootPath ./src/app
 ```
 
 ### 3. Access your routes UI

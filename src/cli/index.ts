@@ -20,11 +20,15 @@ program
 program
   .command('generate')
   .description('generate Routerix app based on your routes')
-  .option('-r, --rootPath', 'Routes root path')
-  .action((str, options) => {
-    console.log(str)
-    console.log(options)
-    generate();
+  .option('-p, --provider <provider>', 'Provider. Check README for current supported providers')
+  .option('-r, --rootPath <rootPath>', 'Routes root path')
+  .action((options) => {
+    if (!options.provider || !options.rootPath) return generate();
+
+    generate({
+      provider: options.provider,
+      rootPath: options.rootPath
+    });
   });
 
 program

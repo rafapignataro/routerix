@@ -1,4 +1,7 @@
+import { Provider } from "../providers";
+
 export interface Config {
+  provider: Provider;
   rootPath: string;
 };
 
