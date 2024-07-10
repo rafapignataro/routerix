@@ -21,5 +21,5 @@ module.exports = {
     content
   });
 
-  console.log('✅ Config file (routerix.config.js) created successfully.');
+  console.info('✅ Config file (routerix.config.js) created successfully.');
 }

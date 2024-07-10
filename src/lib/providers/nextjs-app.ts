@@ -39,7 +39,14 @@ export class NextJsAppProvider implements BaseProvider {
   parseRoute({ config, routePath, parentId = null, list = [] }: ParseRouteParams) {
     const routeName = path.basename(routePath);
     const routeResolvedPath = path.resolve(path.join(CONFIG_PATHS.APP_PATH, routePath));
-    const routeStats = fs.statSync(routeResolvedPath);
+
+    let routeStats: fs.Stats | undefined;
+
+    try {
+      routeStats = fs.statSync(routeResolvedPath);
+    } catch (err) {
+      throw new Error('❌ Path not found');
+    }
 
     if (!routeStats.isDirectory()) throw new Error('❌ A route must be a directory');
 

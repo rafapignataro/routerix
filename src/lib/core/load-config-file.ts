@@ -5,6 +5,8 @@ import { Config } from "./types";
 
 export async function loadConfigFile(configFile: string) {
   try {
+    console.info('\n ⚙️ No args passed to CLI, using config file... \n');
+
     const module = await import(configFile);
 
     if (!module.default) throw 'Missing default export in config file';
@@ -19,6 +21,6 @@ export async function loadConfigFile(configFile: string) {
 
     return { rootPath: resolvedRootPath } as Config;
   } catch (error: any) {
-    throw new Error(`LOAD_CONFIG: ${error.message}`);
+    return null;
   }
 }

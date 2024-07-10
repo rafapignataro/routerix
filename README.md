@@ -45,3 +45,9 @@ You can visualize it locally with a local server. Deploy it to a bucket in your 
 | Framework     | CLI Argument     |
 |---------------|------------------|
 | Next.js App   | nextjs-app       |
+
+### Next steps
+
+- Add more providers
+- Improve diagram image export
+- Get feedback :)
