@@ -2,7 +2,7 @@
 
 Routerix is a UI for your routes. Its simple for developers and accessible to other teams. No code is required.
 
-## ___VIDEO GOES HERE___
+![ezgif-5-05e9b89d18](https://github.com/rafapignataro/routerix/assets/16678782/c7886698-fe24-4745-8825-909f4d9f7c37)
 
 ## Getting Started
 
