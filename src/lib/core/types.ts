@@ -1,5 +1,10 @@
 import { Provider } from "../providers";
 
+export type RawConfig = {
+  provider?: Provider;
+  rootPath: string;
+} & Record<string, unknown>;
+
 export interface Config {
   provider: Provider;
   rootPath: string;

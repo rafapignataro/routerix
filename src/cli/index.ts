@@ -23,12 +23,12 @@ program
   .option('-p, --provider <provider>', 'Provider. Check README for current supported providers')
   .option('-r, --rootPath <rootPath>', 'Routes root path')
   .action((options) => {
-    if (!options.provider || !options.rootPath) return generate();
-
-    generate({
+    if (!!options.provider || !!options.rootPath) return generate({
       provider: options.provider,
       rootPath: options.rootPath
     });
+
+    generate();
   });
 
 program

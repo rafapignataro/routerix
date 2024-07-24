@@ -4,14 +4,20 @@ import { createDefaultConfigFile } from './core/create-default-config-file';
 import { createSchema } from './core/create-schema';
 import { CONFIG_PATHS } from './core/get-config-paths';
 import { loadConfigFile } from './core/load-config-file';
-import { Config } from './core/types';
-import { providers } from './providers';
+import { RawConfig } from './core/types';
+import { validateConfig } from './core/validate-config';
 
 export async function init() {
   createDefaultConfigFile();
 }
 
-export async function generate(params?: Config) {
+export async function generate(params?: RawConfig) {
+  if (params) {
+    console.info('\n ⚙️ Args passed via CLI, ignoring config file... \n');
+  } else {
+    console.info('\n ⚙️ No args passed to CLI, using config file... \n');
+  }
+
   const config = params || await loadConfigFile(CONFIG_PATHS.APP_CONFIG_PATH);
 
   if (!config) {
@@ -20,13 +26,15 @@ export async function generate(params?: Config) {
     return;
   }
 
-  if (!providers[config.provider]) {
-    console.error('\n ❌ Provider not found. Please check README for current supported providers. \n');
+  const configValidation = await validateConfig(config);
+
+  if (!configValidation.success) {
+    console.error(`\n ❌ ${configValidation.error} \n`)
 
     return;
   }
 
-  await createSchema(config);
+  await createSchema(configValidation.data!);
 
   await buildApp();
 }
