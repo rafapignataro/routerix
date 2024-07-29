@@ -7,10 +7,10 @@
   "types": "dist/lib/index.d.ts",
   "bin": "dist/cli/index.js",
   "scripts": {
-    "build": "tsup --entry src/lib/index.ts --entry src/cli/index.ts --format cjs,esm --dts && pnpm run link",
+    "build": "tsup && pnpm run link",
     "link": "pnpm unlink --global && pnpm link --global",
     "dev:app": "pnpm vite dev",
-    "build:app": "pnpm vite build",
+    "build:app": "pnpm vite build --configFile ./src/app/vite.config.ts",
     "lint": "tsc",
     "publish": "pnpm publish --no-git-checks --access public"
   },
