@@ -1,8 +1,12 @@
+import { pathToFileURL } from 'url';
+
 import { RawConfig } from "./types";
 
 export async function loadConfigFile(configFile: string) {
   try {
-    const module = await import(configFile);
+    const configFileUrl = pathToFileURL(configFile).href;
+
+    const module = await import(configFileUrl);
 
     if (!module.default) throw 'Missing default export in config file';
 

@@ -38,7 +38,7 @@ export class NextJsAppProvider implements BaseProvider {
 
   parseRoute({ config, routePath, parentId = null, list = [] }: ParseRouteParams) {
     const routeName = path.basename(routePath);
-    const routeResolvedPath = path.resolve(path.join(CONFIG_PATHS.APP_PATH, routePath));
+    const routeResolvedPath = path.resolve(path.join(CONFIG_PATHS.USER_PATH, routePath));
 
     let routeStats: fs.Stats | undefined;
 
@@ -74,7 +74,7 @@ export class NextJsAppProvider implements BaseProvider {
 
     for (const routeFile of routeFiles) {
       const routeFilePath = path.join(routePath, routeFile.name);
-      const routeResolvedPath = path.resolve(path.join(CONFIG_PATHS.APP_PATH, routeFilePath));
+      const routeResolvedPath = path.resolve(path.join(CONFIG_PATHS.USER_PATH, routeFilePath));
 
       const routeFileName = path.basename(routeResolvedPath);
 

@@ -17,7 +17,7 @@ module.exports = {
 
   saveFile({
     fileName: 'routerix.config.js',
-    destination: CONFIG_PATHS.APP_PATH,
+    destination: CONFIG_PATHS.USER_PATH,
     content
   });
 
