@@ -29,5 +29,5 @@ export async function createSchema(config: Config) {
     content: JSON.stringify(schema, null, 2)
   });
 
-  console.info('✅ Schema created successfully!\n');
+  console.info('✅ Schema created successfully! Creating UI files... \n');
 }

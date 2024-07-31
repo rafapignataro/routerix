@@ -22,9 +22,9 @@ export async function generate(params?: RawConfig) {
   tempRemoveViteLog();
 
   if (params) {
-    console.info('\n ⚙️ Args passed via CLI, ignoring config file... \n');
+    console.info('\n ⚙️ Args passed via CLI, ignoring config file to create schema... \n');
   } else {
-    console.info('\n ⚙️ No args passed to CLI, using config file... \n');
+    console.info('\n ⚙️ No args passed to CLI, using config file to create schema... \n');
   }
 
   const config = params || await loadConfigFile(CONFIG_PATHS.USER_CONFIG_PATH);

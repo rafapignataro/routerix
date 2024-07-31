@@ -1,6 +1,6 @@
 {
   "name": "routerix",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Routerix is a UI for your routes",
   "main": "dist/lib/index.js",
   "module": "dist/lib/index.mjs",
