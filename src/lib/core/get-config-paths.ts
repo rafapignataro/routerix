@@ -10,5 +10,5 @@ export const CONFIG_PATHS = {
   LIBRARY_VITE_BUILD_PATH: path.resolve(LIBRARY_BUILD_PATH, 'build'),
   LIBRARY_VITE_CONFIG_PATH: path.resolve(LIBRARY_BUILD_PATH, 'app', 'vite.config.ts'),
   USER_PATH,
-  APP_CONFIG_PATH: path.resolve(USER_PATH, 'routerix.config.js'),
+  USER_CONFIG_PATH: path.resolve(USER_PATH, 'routerix.config.js'),
 } as const;

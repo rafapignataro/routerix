@@ -7,18 +7,27 @@ import { loadConfigFile } from './core/load-config-file';
 import { RawConfig } from './core/types';
 import { validateConfig } from './core/validate-config';
 
+function tempRemoveViteLog() {
+  process.stdout.moveCursor(0, -2);
+  process.stdout.clearLine(1);
+}
+
 export async function init() {
+  tempRemoveViteLog();
+
   createDefaultConfigFile();
 }
 
 export async function generate(params?: RawConfig) {
+  tempRemoveViteLog();
+
   if (params) {
     console.info('\n ⚙️ Args passed via CLI, ignoring config file... \n');
   } else {
     console.info('\n ⚙️ No args passed to CLI, using config file... \n');
   }
 
-  const config = params || await loadConfigFile(CONFIG_PATHS.APP_CONFIG_PATH);
+  const config = params || await loadConfigFile(CONFIG_PATHS.USER_CONFIG_PATH);
 
   if (!config) {
     console.error('\n ❌ Failed to config Routerix. Provide args via CLI or use the Routerix config file. \n')
@@ -40,6 +49,8 @@ export async function generate(params?: RawConfig) {
 }
 
 export async function preview() {
+  tempRemoveViteLog();
+
   console.warn('👷 Preview is not implemented yet. Run a development server of Routerix app! 👷')
 
   return;

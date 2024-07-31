@@ -10,9 +10,10 @@ export default defineConfig({
     outDir: path.resolve(process.cwd(), '.routerix'),
     rollupOptions: {
       input: path.resolve(__dirname, 'index.html'),
+      logLevel: 'silent',
     },
     emptyOutDir: true,
   },
   base: './',
-  logLevel: 'silent'
+  logLevel: 'silent',
 });

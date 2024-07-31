@@ -11,8 +11,8 @@ module.exports = {
 }
   `.trim();
 
-  if (fs.existsSync(CONFIG_PATHS.APP_CONFIG_PATH)) {
-    fs.rmSync(CONFIG_PATHS.APP_CONFIG_PATH, { recursive: true, force: true });
+  if (fs.existsSync(CONFIG_PATHS.USER_CONFIG_PATH)) {
+    fs.rmSync(CONFIG_PATHS.USER_CONFIG_PATH, { recursive: true, force: true });
   }
 
   saveFile({
