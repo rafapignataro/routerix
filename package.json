@@ -1,6 +1,6 @@
 {
   "name": "routerix",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Routerix is a UI for your routes",
   "main": "dist/lib/index.js",
   "module": "dist/lib/index.mjs",
@@ -12,7 +12,7 @@
     "dev:app": "pnpm vite dev",
     "build:app": "pnpm vite build --configFile ./src/app/vite.config.ts",
     "lint": "tsc",
-    "publish": "pnpm publish --no-git-checks --access public"
+    "publish:npm": "pnpm publish --no-git-checks --access public"
   },
   "keywords": [],
   "author": "",
