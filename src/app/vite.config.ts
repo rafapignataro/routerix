@@ -14,4 +14,5 @@ export default defineConfig({
     emptyOutDir: true,
   },
   base: './',
+  logLevel: 'silent'
 });

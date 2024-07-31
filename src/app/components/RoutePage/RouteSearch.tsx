@@ -46,6 +46,7 @@ export function RouteSearch() {
           placeholder="Search route"
           value={search}
           onChange={handleSearch}
+          autoComplete="off"
         />
         <div className="hidden peer-focus:block absolute top-full left-1/2 -translate-x-1/2 translate-y-5 rounded-md p-1 z-50 w-full max-w-[480px] max-h-[240px] overflow-y-auto bg-white border-[1px]">
           <div className="w-full">

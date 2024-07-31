@@ -49,5 +49,5 @@ You can visualize it locally with a local server. Deploy it to a bucket in your 
 ### Next steps
 
 - Add more providers
-- Improve diagram image export
+- Improve current features
 - Get feedback :)

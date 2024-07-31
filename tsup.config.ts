@@ -5,5 +5,6 @@ export default defineConfig({
   format: ['cjs', 'esm'],
   dts: true,
   splitting: false,
-  onSuccess: 'cp -a ./src/app dist'
+  onSuccess: 'cp -a ./src/app dist',
+  clean: true,
 })

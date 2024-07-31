@@ -1,16 +1,14 @@
-import { exec } from 'child_process';
-import fs from 'fs';
-import path from 'path';
 import { build } from 'vite';
+import path from 'path';
 
 import { CONFIG_PATHS } from './get-config-paths';
-import { copyDir } from '../utils';
-import react from '@vitejs/plugin-react';
 
 export async function buildApp() {
   await build({
-    configFile: CONFIG_PATHS.LIBRARY_VITE_CONFIG_PATH
-  })
+    configFile: path.resolve(__dirname, '..', 'app', 'vite.config.ts'),
+  });
+
+  console.info('✅ UI build files (.routerix) created successfully!\n');
 
   // exec('pnpm vite build', { cwd: CONFIG_PATHS.LIBRARY_PATH }, (error) => {
   //   if (error) {
