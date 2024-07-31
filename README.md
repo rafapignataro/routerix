@@ -6,21 +6,30 @@ Routerix is a UI for your routes. Its simple for developers and accessible to ot
 
 ## Getting Started
 
-### 1. Install the library
+Routerix is a CLI. Its necessary to install it and with 1 command its possible to automatically generate a UI for your routes. Check the [__Supported frameworks__](#supported-frameworks) section for current support.
+
+## 1. Install
 
 ```sh
 pnpm install routerix
 ```
 
-### 2. Create the config file
+## 2. Configuration
 
-Optional step if using CLI args. Its possible to pass all config parameters via CLI. Its not possible yet to split config between file and CLI args. Choose one approach.
+Generate the config file __routerix.config.js__. This is an __Optional step__ if using CLI args. It's not possible to split config between config file and CLI args. Choose one approach.
 
 ```sh
 pnpm routerix init
 ```
 
-### 3. Generate the files
+### Arguments
+
+|                  |                  |
+|------------------|------------------|
+| __rootPath__     | Routes root folder        |
+| __provider__     | Project framework key ([__Supported frameworks__](#supported-frameworks))       |
+
+## 3. Generate the UI
 
 With config file
 
@@ -28,25 +37,25 @@ With config file
 pnpm routerix generate
 ```
 
-Without config file
+Without config file (example)
 
 ```sh
-pnpm routerix generate --provider nextjs-app --rootPath ./src/app
+pnpm routerix generate --rootPath ./src/app --provider nextjs-app 
 ```
 
-### 3. Access your routes UI
+## 3. Access your routes UI
 
 Now you have a folder called __.routerix__ in your project. This is the static UI for your routes.
 
 You can visualize it locally with a local server. Deploy it to a bucket in your CI. Its your decision.
 
-### Supported frameworks
+## Supported frameworks
 
 | Framework     | CLI Argument     |
 |---------------|------------------|
 | Next.js App   | nextjs-app       |
 
-### Next steps
+## Next steps
 
 - Add more providers
 - Improve current features
