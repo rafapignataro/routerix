@@ -1,20 +1,26 @@
-import path from 'path';
-import fs from 'fs';
-
-import { Route, RouteElement } from "../core/types";
-import { CONFIG_PATHS } from '../core/get-config-paths';
+import { Config, Route } from "../core/types";
 
 import { BaseProvider, ParseRouteParams } from '.';
+import { sortRoutesByChildrenLength } from '../core/sort-routes-by-children-length';
+import { getPathInfo } from '../utils';
+
+function isContainerDirectory(name: string) {
+  return name[0] === '(' && name.at(-1) === ')'
+}
 
 export class NextJsAppProvider implements BaseProvider {
-  constructor() { }
+  constructor(public config: Config) { }
 
-  getRouteType(routeName: string) {
-    if (routeName[0] === '(' && routeName.at(-1) === ')') return 'container' as const;
+  getRouteType(route: Route) {
+    if (route.name.at(0) === '[' && route.name.at(-1) === ']') {
+      return 'dynamic';
+    } else if (route.elements['page.tsx'] || route.elements['page.js']) {
+      return 'page';
+    } else if (route.elements['route.ts'] || route.elements['route.js']) {
+      return 'api';
+    }
 
-    if (routeName[0] === '[' && routeName.at(-1) === ']') return 'dynamic' as const;
-
-    return 'default' as const;
+    return 'empty-path';
   };
 
   getRouteElementType(elementName: string) {
@@ -36,104 +42,70 @@ export class NextJsAppProvider implements BaseProvider {
     }
   }
 
-  parseRoute({ config, routePath, parentId = null, list = [] }: ParseRouteParams) {
-    const routeName = path.basename(routePath);
-    const routeResolvedPath = path.resolve(path.join(CONFIG_PATHS.USER_PATH, routePath));
+  parseRoute({ routePath, parentId = null, list = [] }: ParseRouteParams) {
+    const isRoot = !parentId;
 
-    let routeStats: fs.Stats | undefined;
+    const pathInfo = getPathInfo({ path: routePath });
 
-    try {
-      routeStats = fs.statSync(routeResolvedPath);
-    } catch (err) {
-      throw new Error('❌ Path not found');
-    }
+    if (!pathInfo) throw new Error('❌ Path to route not found');
 
-    if (!routeStats.isDirectory()) throw new Error('❌ A route must be a directory');
+    if (isRoot && pathInfo.type !== 'folder') throw new Error('❌ The root must be a directory');
 
-    const routeFiles = fs.readdirSync(routeResolvedPath, { withFileTypes: true });
+    if (pathInfo.type !== 'folder') return null;
 
-    const isRoot = routePath.replace(config.rootPath, '') === '';
-
-    const rawFullPath = routePath.replace(config.rootPath, '') || '/';
-    const rawFullPathParts = rawFullPath.split('/').filter(part => part[0] !== '(' && part.at(-1) !== ')');
-
-    const routeId = crypto.randomUUID();
+    if (pathInfo.isEmpty) return null;
 
     const route: Route = {
-      id: routeId,
+      id: crypto.randomUUID(),
       parentId,
-      name: isRoot ? 'root' : routeName,
-      path: isRoot ? '/' : `/${routeName}`,
-      fullPath: rawFullPathParts.join('/'),
-      type: this.getRouteType(routeName),
+      name: isRoot ? 'root' : pathInfo.name,
+      path: isRoot ? '/' : `/${pathInfo.name}`,
+      fullPath: pathInfo.relativePath
+        .replace('app', '')
+        .split('/')
+        .filter(part => !isContainerDirectory(part))
+        .join('/') || '/',
+      type: 'empty-path',
       routes: {},
       elements: {},
-    };
+    }
 
-    if (route.type !== 'container') list.push(route);
-
-    for (const routeFile of routeFiles) {
-      const routeFilePath = path.join(routePath, routeFile.name);
-      const routeResolvedPath = path.resolve(path.join(CONFIG_PATHS.USER_PATH, routeFilePath));
-
-      const routeFileName = path.basename(routeResolvedPath);
-
-      const routeFileStats = fs.statSync(routeResolvedPath);
-
-      if (routeFileStats.isDirectory()) {
-        const parsedRoute = this.parseRoute({
-          config,
-          routePath: routeFilePath,
-          parentId: route.type !== 'container' ? routeId : parentId,
-          list
-        });
-
-        if (!parsedRoute) continue;
-
-        if (parsedRoute.route.type === 'container') {
-          route.routes = { ...route.routes, ...parsedRoute.route.routes };
-          continue;
+    for (const childPathInfo of Object.values(pathInfo.children)) {
+      if (childPathInfo.type === 'file') {
+        route.elements[childPathInfo.name] = {
+          id: crypto.randomUUID(),
+          parentId: route.id,
+          name: childPathInfo.name,
+          type: this.getRouteElementType(childPathInfo.name)
         }
-
-        route.routes[routeFile.name] = parsedRoute.route;
-
         continue;
       }
 
-      const routeElement: RouteElement = {
-        id: crypto.randomUUID(),
-        parentId: routeId,
-        name: routeFileName,
-        type: this.getRouteElementType(routeFileName)
+      const isContainer = isContainerDirectory(childPathInfo.name);
+
+      const parsedRoute = this.parseRoute({
+        routePath: childPathInfo.absolutePath,
+        parentId: isContainer ? parentId : route.id,
+        list
+      });
+
+      if (!parsedRoute) continue;
+
+      // If is just a container directory (e.g. (folder)), forward the route and its routes to the parent
+      if (isContainer) {
+        route.routes = { ...route.routes, ...parsedRoute.route.routes };
+        route.elements = { ...route.elements, ...parsedRoute.route.elements };
+        continue;
       }
 
-      route.elements[routeFile.name] = routeElement;
+      list.push(parsedRoute.route);
+
+      route.routes[childPathInfo.name] = parsedRoute.route;
     }
 
-    const routeRoutes = Object.values(route.routes);
-    const routeElements = Object.values(route.elements);
+    route.type = this.getRouteType(route);
 
-    if (!routeRoutes.length && !routeElements.length) return null;
-
-    if (
-      !routeRoutes.length &&
-      (!route.elements['page.tsx'] && !route.elements['route.ts'])
-    ) return null;
-
-    const sortedRoutes = routeRoutes
-      .sort((a, b) => {
-        const hasChildrenA = !!Object.keys(a.routes).length;
-        const hasChildrenB = !!Object.keys(b.routes).length;
-
-        if (hasChildrenA && !hasChildrenB) return -1;
-
-        if (!hasChildrenA && hasChildrenB) return 1;
-
-        return 0;
-      })
-
-    route.routes = {};
-    sortedRoutes.forEach(r => route.routes[r.name] = r)
+    route.routes = sortRoutesByChildrenLength(route).record;
 
     return { route, list };
   }

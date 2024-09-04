@@ -36,10 +36,10 @@ export interface Schema {
 }
 
 export type RouteType =
-  | 'default'
+  | 'page'
   | 'dynamic'
   | 'api'
-  | 'container';
+  | 'empty-path';
 
 export type RouteElementType =
   | 'page'

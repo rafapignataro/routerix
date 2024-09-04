@@ -3,15 +3,15 @@ import { providers } from '../providers';
 import { saveFile } from '../utils';
 import { CONFIG_PATHS } from './get-config-paths';
 import { Config, Schema } from "./types";
-
+import path from 'path';
 
 export async function createSchema(config: Config) {
-  const provider = providers[config.provider]();
+  const provider = providers[config.provider](config);
+
+  const routeDirectoryPath = path.resolve(path.join(CONFIG_PATHS.USER_PATH, config.rootPath));
 
   const parsedRoute = provider.parseRoute({
-    config: config,
-    routePath: config.rootPath,
-    parentId: null
+    routePath: routeDirectoryPath,
   });
 
   if (!parsedRoute) return console.error('❌ Root directory is empty');
