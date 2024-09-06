@@ -10,7 +10,7 @@
     "build": "tsup && pnpm run link",
     "link": "pnpm unlink --global && pnpm link --global",
     "dev:app": "pnpm vite dev",
-    "build:app": "pnpm vite build --configFile ./src/app/vite.config.ts",
+    "build:app": "pnpm vite build --config ./src/app/vite.config.ts",
     "lint": "tsc",
     "publish:npm": "pnpm publish --no-git-checks --access public"
   },
