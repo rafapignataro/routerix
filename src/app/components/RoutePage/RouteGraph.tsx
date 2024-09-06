@@ -239,6 +239,8 @@ function RouteGraphPanel({ onDirection }: RouteGraphPanelProps) {
 function RouteNode(node: NodeProps<Route>) {
   const route = node.data;
 
+  const hasChildren = !!Object.keys(route.routes).length;
+
   return (
     <>
       <div className="group flex items-center px-4 py-3 gap-4 rounded-sm border-2 transition-all duration-300 bg-gray-50 hover:bg-gray-100 text-gray-700">
@@ -246,7 +248,7 @@ function RouteNode(node: NodeProps<Route>) {
         <p>{route.path}</p>
       </div>
       <Handle type="target" position={Position.Left} />
-      <Handle type="source" position={Position.Right} />
+      {hasChildren && <Handle type="source" position={Position.Right} />}
     </>
   );
 }
