@@ -39,7 +39,7 @@ export type RouteType =
   | 'page'
   | 'dynamic'
   | 'api'
-  | 'empty-path';
+  | 'not-found';
 
 export type RouteElementType =
   | 'page'

@@ -1,6 +1,6 @@
 
 import { providers } from '../providers';
-import { saveFile } from '../utils';
+import { getPathInfo, saveFile } from '../utils';
 import { CONFIG_PATHS } from './get-config-paths';
 import { Config, Schema } from "./types";
 import path from 'path';
@@ -10,17 +10,23 @@ export async function createSchema(config: Config) {
 
   const routeDirectoryPath = path.resolve(path.join(CONFIG_PATHS.USER_PATH, config.rootPath));
 
-  const parsedRoute = provider.parseRoute({
+  const rootInfo = getPathInfo({ path: routeDirectoryPath });
+
+  if (!rootInfo) return console.error('❌ Root directory is empty');
+
+  if (rootInfo.type !== 'folder') return console.error('❌ The root must be a directory');
+
+  const parsedPath = provider.parsePath({
     routePath: routeDirectoryPath,
   });
 
-  if (!parsedRoute) return console.error('❌ Root directory is empty');
+  if (!parsedPath) return console.error('❌ Root directory is empty');
 
   const schema: Schema = {
     id: crypto.randomUUID(),
     createdAt: new Date().getTime(),
-    graph: parsedRoute.route,
-    list: parsedRoute.list,
+    graph: parsedPath.route,
+    list: parsedPath.list,
   }
 
   saveFile({

@@ -49,7 +49,7 @@ export function getDirectoryFiles(path: string) {
   return fs.readdirSync(path, { withFileTypes: true });
 }
 
-type PathInfo = {
+export type PathInfo = {
   type: 'file' | 'folder';
   name: string;
   absolutePath: string;
@@ -67,9 +67,17 @@ export function getPathInfo(params: { path: string }, level = 0) {
   }
 
   if (!pathStats.isDirectory()) {
+    const fileName = path.basename(params.path);
+
+    if (!fileName.includes('.')) return null;
+
+    const [name, extension] = fileName.split('.') as [string, string];
+
+    if (!['tsx', 'ts', 'js', 'jsx'].includes(extension)) return null;
+
     const fileInfo: PathInfo = {
       type: 'file',
-      name: path.basename(params.path),
+      name,
       absolutePath: path.resolve(params.path),
       relativePath: path.relative(CONFIG_PATHS.USER_PATH, params.path)
     }
